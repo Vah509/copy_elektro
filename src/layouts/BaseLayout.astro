@@ -1,1 +1,44 @@
+---
+const { title = 'Виробництво електрощитів | Київ' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <header class="em-site-header">
+    <div class="em-header-inner">
+      <a href="/" class="em-logo">
+        <span class="em-logo-name">Електромонтаж</span>
+        <span class="em-logo-sub">виробництво електрощитів</span>
+      </a>
+      <nav class="em-site-nav">
+        <a href="/produktsiia/">Продукція</a>
+        <a href="/posluhy/">Послуги</a>
+        <a href="/vykonani-roboty/">Виконані роботи</a>
+        <a href="/pro-nas/">Про нас</a>
+        <a href="/kontakty/">Контакти</a>
+      </nav>
+      <a href="tel:+380675097094" class="em-btn-primary">+38 (067) 509-70-94</a>
+    </div>
+  </header>
 
+  <main>
+    <slot />
+  </main>
+
+  <footer class="em-site-footer">
+    <div class="em-footer-inner">
+      <p>© 2026 Електромонтаж. Виробництво електрощитів, Київ та область.</p>
+      <a href="tel:+380675097094" class="em-footer-phone">+38 (067) 509-70-94</a>
+    </div>
+  </footer>
+</body>
+</html>
