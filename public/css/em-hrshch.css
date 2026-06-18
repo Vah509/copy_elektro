@@ -1,0 +1,414 @@
+/* ============================================================
+   СТИЛІ СТОРІНКИ — ГРЩ / ВРЩ / em-hrshch.css
+   elektromontazh.kiev.ua
+   Підключати після: design-system-v2.css + em-form.css
+   ============================================================ */
+
+/* ════════════════════════════════════════
+   HERO — два стовпці: текст + фото
+════════════════════════════════════════ */
+.em-hero-product {
+  background: var(--c-bg2);
+  border-bottom: 2px solid var(--c-accent-border);
+  padding: 64px 24px;
+}
+
+@media (min-width: 801px) {
+  .em-hero-product-inner {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 56px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 800px) {
+  .em-hero-product-inner {
+    display: block !important;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .em-hero-product-photo { margin-bottom: 32px; }
+}
+
+.em-hero-product-text h1 { margin-bottom: 16px; }
+.em-hero-product-lead {
+  font-size: 17px;
+  color: var(--c-muted);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-family: var(--ff-body);
+}
+.em-hero-product-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  margin-bottom: 16px;
+}
+.em-hero-product-contact {
+  font-size: 13px;
+  color: var(--c-muted);
+  font-family: var(--ff-body);
+}
+.em-hero-product-contact a {
+  color: var(--c-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.em-hero-product-contact a:hover { color: var(--c-accent); }
+
+/* Фото у hero */
+.em-hero-product-photo {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: visible;
+}
+.em-hero-product-photo img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  display: block;
+}
+.em-hero-photo-placeholder {
+  background: var(--c-panel);
+  border: 2px dashed var(--c-accent-border);
+  border-radius: var(--radius);
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--c-muted);
+  font-family: var(--ff-body);
+  font-size: 14px;
+  text-align: center;
+}
+.em-hero-photo-placeholder svg {
+  width: 48px; height: 48px;
+  fill: var(--c-accent);
+  opacity: 0.2;
+}
+.em-hero-photo-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: var(--c-accent);
+  color: #fff;
+  font-family: var(--ff-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 600px) {
+  .em-hero-product { padding: 40px 16px !important; }
+  .em-hero-product-actions { flex-direction: column !important; }
+}
+
+/* ════════════════════════════════════════
+   ГАЛЕРЕЯ ПРОДУКТУ
+════════════════════════════════════════ */
+@media (min-width: 641px) {
+  .em-product-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+  .em-gallery-item-large { grid-row: span 2 !important; }
+}
+@media (max-width: 640px) {
+  .em-product-gallery {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .em-gallery-item-large {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+  }
+}
+
+.em-gallery-item {
+  background: var(--c-bg2);
+  border: 1.5px solid var(--c-accent-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  aspect-ratio: 4/3;
+}
+.em-gallery-item-large { aspect-ratio: auto; min-height: 280px; }
+.em-gallery-item:hover {
+  border-color: var(--c-accent);
+  box-shadow: var(--shadow-card);
+}
+.em-gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition);
+}
+.em-gallery-item:hover img { transform: scale(1.04); }
+.em-gallery-placeholder {
+  width: 100%; height: 100%;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--c-muted);
+  font-family: var(--ff-body);
+  font-size: 12px;
+  text-align: center;
+  padding: 16px;
+}
+.em-gallery-placeholder svg {
+  width: 32px; height: 32px;
+  fill: var(--c-accent);
+  opacity: 0.2;
+}
+.em-gallery-cta { text-align: center; margin-top: 8px; }
+
+/* ════════════════════════════════════════
+   ДЕ ЗАСТОСОВУЄТЬСЯ — 6 карток
+════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .em-objects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px;
+    margin-top: 8px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .em-objects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px;
+    margin-top: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .em-objects-grid {
+    display: block !important;
+    margin-top: 8px;
+  }
+  .em-object-card { margin-bottom: 12px; }
+}
+
+.em-object-card {
+  background: #fff;
+  border: 1.5px solid var(--c-accent-border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.em-object-card:hover {
+  border-color: var(--c-accent);
+  box-shadow: 0 4px 16px var(--c-accent-mid);
+}
+.em-object-num {
+  font-family: var(--ff);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-accent);
+  opacity: 0.15;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.em-object-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-head);
+  margin-bottom: 6px;
+}
+.em-object-card p {
+  font-size: 13px;
+  color: var(--c-muted);
+  line-height: 1.6;
+  font-family: var(--ff-body);
+}
+
+/* ════════════════════════════════════════
+   ТЕХНІЧНІ ХАРАКТЕРИСТИКИ
+════════════════════════════════════════ */
+.em-specs-table {
+  width: 100%;
+  max-width: 680px;
+  border-collapse: collapse;
+  margin-top: 24px;
+  font-family: var(--ff-body);
+}
+.em-specs-table tr { border-bottom: 1px solid var(--c-divider); }
+.em-specs-table tr:last-child { border-bottom: none; }
+.em-specs-label {
+  padding: 13px 24px 13px 0;
+  color: var(--c-muted);
+  font-size: 14px;
+  width: 40%;
+  vertical-align: top;
+}
+.em-specs-value {
+  padding: 13px 0;
+  font-weight: 600;
+  color: var(--c-head);
+  font-size: 15px;
+}
+
+@media (max-width: 480px) {
+  .em-specs-table,
+  .em-specs-table tbody,
+  .em-specs-table tr,
+  .em-specs-table td { display: block !important; width: 100% !important; }
+  .em-specs-label { padding-bottom: 2px; }
+  .em-specs-value { padding-top: 0; padding-bottom: 12px; font-size: 14px; }
+}
+
+/* ════════════════════════════════════════
+   FAQ — АКОРДЕОН
+════════════════════════════════════════ */
+.em-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 28px;
+  border: 1.5px solid var(--c-accent-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.em-faq-item { border-bottom: 1px solid var(--c-divider); }
+.em-faq-item:last-child { border-bottom: none; }
+
+.em-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--ff-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-head);
+  transition: background var(--transition), color var(--transition);
+}
+.em-faq-question:hover {
+  background: var(--c-bg2);
+  color: var(--c-accent);
+}
+.em-faq-item.open .em-faq-question {
+  background: var(--c-accent-faint);
+  color: var(--c-accent);
+}
+.em-faq-icon {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: transform var(--transition);
+}
+.em-faq-item.open .em-faq-icon { transform: rotate(180deg); }
+
+.em-faq-answer {
+  display: none;
+  padding: 0 24px 20px;
+  background: var(--c-accent-faint);
+}
+.em-faq-item.open .em-faq-answer { display: block; }
+.em-faq-answer p {
+  font-family: var(--ff-body);
+  font-size: 15px;
+  color: var(--c-text);
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .em-faq-question { padding: 14px 16px !important; font-size: 14px; }
+  .em-faq-answer   { padding: 0 16px 16px !important; }
+}
+
+/* ════════════════════════════════════════
+   КОНТАКТНИЙ БЛОК (замінює форму ТЗ, G6 — новий)
+════════════════════════════════════════ */
+.em-contact-section {
+  background: var(--c-bg2);
+  border-top: 2px solid var(--c-accent-border);
+  border-bottom: 2px solid var(--c-accent-border);
+  padding: 64px 24px;
+  scroll-margin-top: 80px;
+}
+.em-contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.em-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+.em-contact-card {
+  background: #fff;
+  border: 1.5px solid var(--c-accent-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.em-contact-card:hover {
+  border-color: var(--c-accent);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+.em-contact-card-static { cursor: default; }
+.em-contact-card-static:hover { transform: none; }
+.em-contact-card-icon { font-size: 22px; margin-bottom: 4px; }
+.em-contact-card-label {
+  font-size: 12px;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-family: var(--ff-body);
+}
+.em-contact-card-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--c-head);
+  font-family: var(--ff-body);
+}
+.em-contact-hours {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--c-muted);
+  font-family: var(--ff-body);
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .em-contact-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .em-contact-section { padding: 40px 16px !important; }
+  .em-contact-grid { grid-template-columns: 1fr !important; }
+}
