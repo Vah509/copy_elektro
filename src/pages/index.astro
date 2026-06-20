@@ -28,29 +28,63 @@ const description = "Виготовлення силових щитів та щ�
         <span class="em-logo-sub">Виготовлення електрощитів</span>
       </span>
     </a>
+
     <nav aria-label="Головна навігація">
       <ul class="em-site-nav">
-        <li><a href="/produktsiia/">Продукція</a></li>
-        <li><a href="/posluhy/">Послуги</a></li>
+        <li class="em-dropdown">
+          <a href="/posluhy-ta-produktsiia/" tabindex="0">
+            Продукція
+            <svg class="em-nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="em-dropdown-panel">
+            <li><a href="/posluhy-ta-produktsiia/hrshch">ГРЩ / ВРЩ — силові щити</a></li>
+            <li><a href="/posluhy-ta-produktsiia/dymovydalennia">Щит димовидалення</a></li>
+            <li><a href="/posluhy-ta-produktsiia/dvyhuny">Керування двигунами</a></li>
+            <li><a href="/posluhy-ta-produktsiia/shuz">Керування засувками (ШУЗ)</a></li>
+            <li><a href="/posluhy-ta-produktsiia/krm">КРМ</a></li>
+            <li><a href="/posluhy-ta-produktsiia/zenitni-lihtari">Зенітні ліхтарі</a></li>
+            <li><a href="/posluhy-ta-produktsiia/ahro">Для агрогосподарств</a></li>
+          </ul>
+        </li>
+        <li class="em-dropdown">
+          <a href="/posluhy-ta-produktsiia/" tabindex="0">
+            Послуги
+            <svg class="em-nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="em-dropdown-panel">
+            <li><a href="/posluhy-ta-produktsiia/plk">Програмування ПЛК</a></li>
+            <li><a href="/posluhy-ta-produktsiia/elektromontazh">Електромонтажні роботи</a></li>
+          </ul>
+        </li>
         <li><a href="/vykonani-roboty/">Виконані роботи</a></li>
         <li><a href="/pro-nas/">Про нас</a></li>
         <li><a href="/kontakty/">Контакти</a></li>
       </ul>
     </nav>
+
     <div class="em-header-right">
-      <a href="tel:+380675097094" class="em-btn-primary em-btn-sm">+38 (067) 509-70-94</a>
+      <a href="tel:+380675097094" class="em-btn-primary em-btn-sm em-header-phone-btn">
+        <svg class="em-phone-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        <span>+38 (067) 509-70-94</span>
+      </a>
       <button class="em-burger" aria-label="Відкрити меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
+
   <nav class="em-mobile-nav" aria-label="Мобільна навігація">
-    <a href="/produktsiia/">Продукція</a>
-    <a href="/posluhy/">Послуги</a>
+    <a href="/posluhy-ta-produktsiia/">Продукція та послуги</a>
+    <div class="em-mobile-sub">
+      <a href="/posluhy-ta-produktsiia/hrshch">— ГРЩ / ВРЩ</a>
+      <a href="/posluhy-ta-produktsiia/dymovydalennia">— Димовидалення</a>
+      <a href="/posluhy-ta-produktsiia/dvyhuny">— Керування двигунами</a>
+      <a href="/posluhy-ta-produktsiia/shuz">— ШУЗ</a>
+      <a href="/posluhy-ta-produktsiia/krm">— КРМ</a>
+    </div>
     <a href="/vykonani-roboty/">Виконані роботи</a>
     <a href="/pro-nas/">Про нас</a>
     <a href="/kontakty/">Контакти</a>
-    <a href="tel:+380675097094" class="em-mobile-phone">📞 +38 (067) 509-70-94</a>
   </nav>
 </header>
 
@@ -65,63 +99,64 @@ const description = "Виготовлення силових щитів та щ�
   </div>
 </section>
 
-<!-- ===== ПОРТФОЛІО / ВИКОНАНІ РОБОТИ ===== -->
-<section class="em-section-alt" id="vykonani">
-  <div class="em-section-alt-inner">
-    <span class="em-section-label">Наші роботи</span>
-    <h2>Виконані проєкти</h2>
-    <p class="em-lead">Понад 25 років виготовлення електрощитів для промислових підприємств Києва та області.</p>
-    <div style="margin-top: 24px;">
-      <a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи</a>
-    </div>
+<!-- ===== ПОРТФОЛІО / ВИКОНАНІ РОБОТИ (білий фон, бо hero вже зелений) ===== -->
+<section class="em-section" id="vykonani">
+  <span class="em-section-label">Наші роботи</span>
+  <h2>Виконані проєкти</h2>
+  <p class="em-lead">Понад 25 років виготовлення електрощитів для промислових підприємств Києва та області.</p>
+  <div style="margin-top: 24px;">
+    <a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи</a>
   </div>
 </section>
 
-<!-- ===== СПЕЦІАЛІЗАЦІЯ ===== -->
-<section class="em-section">
-  <span class="em-section-label">Спеціалізація</span>
-  <h2>Що ми виготовляємо</h2>
-  <div class="em-products-grid">
-    <a href="/posluhy-ta-produktsiia/hrshch" class="em-product-card">
-      <div class="em-product-card-body"><h3>ГРЩ / ВРЩ</h3><p>Силові щити до 630А</p></div>
-    </a>
-    <a href="/posluhy-ta-produktsiia/dymovydalennia" class="em-product-card">
-      <div class="em-product-card-body"><h3>Щити димовидалення</h3><p>Протипожежна автоматика</p></div>
-    </a>
-    <a href="/posluhy-ta-produktsiia/dvyhuny" class="em-product-card">
-      <div class="em-product-card-body"><h3>Керування двигунами</h3><p>Конвеєри, виробничі лінії</p></div>
-    </a>
-    <a href="/posluhy-ta-produktsiia/shuz" class="em-product-card">
-      <div class="em-product-card-body"><h3>ШУЗ</h3><p>Керування засувками</p></div>
-    </a>
-    <a href="/posluhy-ta-produktsiia/krm" class="em-product-card">
-      <div class="em-product-card-body"><h3>КРМ</h3><p>Компенсація реактивної потужності</p></div>
-    </a>
-  </div>
-</section>
-
-<!-- ===== ЧОМУ ОБИРАЮТЬ НАС ===== -->
+<!-- ===== СПЕЦІАЛІЗАЦІЯ (зелений фон) ===== -->
 <section class="em-section-alt">
   <div class="em-section-alt-inner">
-    <span class="em-section-label">Переваги</span>
-    <h2>Чому обирають нас</h2>
-    <div class="em-why-grid">
-      <div class="em-why-card"><h3>25+ років досвіду</h3><p>На ринку з 1999 року.</p></div>
-      <div class="em-why-card"><h3>Гарантія 12 місяців</h3><p>На кожен виготовлений щит.</p></div>
-      <div class="em-why-card"><h3>Терміни від 2 тижнів</h3><p>Узгоджуються при постановці у виготовлення.</p></div>
-      <div class="em-why-card"><h3>ETI / Hager / Schneider / Eaton</h3><p>Перевірені бренди компонентів.</p></div>
+    <span class="em-section-label">Спеціалізація</span>
+    <h2>Що ми виготовляємо</h2>
+    <div class="em-products-grid">
+      <a href="/posluhy-ta-produktsiia/hrshch" class="em-product-card">
+        <div class="em-product-card-body"><h3>ГРЩ / ВРЩ</h3><p>Силові щити до 630А</p></div>
+      </a>
+      <a href="/posluhy-ta-produktsiia/dymovydalennia" class="em-product-card">
+        <div class="em-product-card-body"><h3>Щити димовидалення</h3><p>Протипожежна автоматика</p></div>
+      </a>
+      <a href="/posluhy-ta-produktsiia/dvyhuny" class="em-product-card">
+        <div class="em-product-card-body"><h3>Керування двигунами</h3><p>Конвеєри, виробничі лінії</p></div>
+      </a>
+      <a href="/posluhy-ta-produktsiia/shuz" class="em-product-card">
+        <div class="em-product-card-body"><h3>ШУЗ</h3><p>Керування засувками</p></div>
+      </a>
+      <a href="/posluhy-ta-produktsiia/krm" class="em-product-card">
+        <div class="em-product-card-body"><h3>КРМ</h3><p>Компенсація реактивної потужності</p></div>
+      </a>
     </div>
+  </div>
+</section>
+
+<!-- ===== ЧОМУ ОБИРАЮТЬ НАС (білий фон) ===== -->
+<section class="em-section">
+  <span class="em-section-label">Переваги</span>
+  <h2>Чому обирають нас</h2>
+  <div class="em-why-grid">
+    <div class="em-why-card"><h3>25+ років досвіду</h3><p>На ринку з 1999 року.</p></div>
+    <div class="em-why-card"><h3>Гарантія 12 місяців</h3><p>На кожен виготовлений щит.</p></div>
+    <div class="em-why-card"><h3>Терміни від 2 тижнів</h3><p>Узгоджуються при постановці у виготовлення.</p></div>
+    <div class="em-why-card"><h3>ETI / Hager / Schneider / Eaton</h3><p>Перевірені бренди компонентів.</p></div>
   </div>
 </section>
 
 <!-- ===== G2 — ФУТЕР ===== -->
 <footer class="em-site-footer">
   <div class="em-footer-inner">
-    <span>© 2026 elektromontazh.kiev.ua — виробництво електрощитів, Київ та область</span>
-    <div class="em-footer-phone"><a href="tel:+380675097094">+38 (067) 509-70-94</a></div>
+    <span>© 2026 Електромонтаж — виробництво електрощитів, Київ та область</span>
+    <div class="em-footer-contacts">
+      <a href="tel:+380675097094" class="em-footer-phone">+38 (067) 509-70-94</a>
+      <a href="mailto:5033455@gmail.com" class="em-footer-email">5033455@gmail.com</a>
+    </div>
   </div>
 </footer>
 
-<script src="/js/em-site.js"></script>
+<script is:inline src="/js/em-site.js"></script>
 </body>
 </html>

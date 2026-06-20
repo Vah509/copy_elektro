@@ -1,48 +1,17 @@
 ---
-// СТОРІНКА: ГРЩ та ВРЩ — силові щити
-// URL: /posluhy-ta-produktsiia/hrshch
-// ВЕРСІЯ 2 — правки за фідбеком: контент, порядок блоків, контактний блок, чергування фону
-
 const title = "Виготовлення ГРЩ та ВРЩ на замовлення — до 630А | elektromontazh.kiev.ua";
 const description = "Виготовлення та збірка головних та вводно-розподільчих щитів до 630А на замовлення. Гарантія 12 місяців. Київ, Київська область та вся Україна. Hager, ETI, Schneider, Eaton.";
 
 const faqItems = [
-  {
-    q: "Чим відрізняється ГРЩ від ВРЩ?",
-    a: "ГРЩ (головний розподільчий щит) — встановлюється після трансформатора або точки введення в будівлю. ВРЩ (вводно-розподільчий щит) — аналогічна функція, термін частіше використовується для промислових об'єктів. Конструктивно обидва типи схожі — різниця переважно в назві в проєктній документації."
-  },
-  {
-    q: "До якого струму ви виготовляєте силові щити?",
-    a: "Виготовляємо ГРЩ та ВРЩ до 630А. Точне значення визначається після розрахунку навантаження або за вашою схемою."
-  },
-  {
-    q: "Чи можна замовити щит з АВР?",
-    a: "Так, реалізуємо схеми з автоматичним вводом резерву у складі ГРЩ або як окремий щит АВР. Схема може бути на контакторах, автоматах з мотоприводом або на спеціалізованому блоці — залежно від вимог та бюджету."
-  },
-  {
-    q: "Що робити, якщо готової схеми немає?",
-    a: "Надішліть опис задачі — які споживачі, яке навантаження, які режими роботи. Розробимо принципову схему самостійно та узгодимо з вами перед початком виготовлення."
-  },
-  {
-    q: "Чи можна надати свої компоненти для збірки?",
-    a: "Ні. Ми самостійно закуповуємо все обладнання відповідно до узгодженої специфікації і передаємо готовий виріб з гарантією. Це дозволяє нам відповідати за якість щита від початку до кінця."
-  },
-  {
-    q: "Яку документацію ви передаєте разом зі щитом?",
-    a: "Паспорт виробу та принципову схему. Документи вкладаються безпосередньо у щит."
-  },
-  {
-    q: "Який термін виготовлення?",
-    a: "Від 2 тижнів. Точний термін узгоджується при постановці у виготовлення — залежить від комплектації та завантаження виробництва."
-  },
-  {
-    q: "Як дізнатися вартість?",
-    a: "Надішліть технічне завдання або схему — розрахуємо вартість протягом 1–2 робочих днів. Вартість залежить від складності схеми та обраних компонентів."
-  },
-  {
-    q: "Чи можна прискорити виготовлення?",
-    a: "Залежить від завантаження виробництва та наявності компонентів. Уточнюйте при замовленні — постараємося знайти рішення."
-  }
+  { q: "Чим відрізняється ГРЩ від ВРЩ?", a: "ГРЩ (головний розподільчий щит) — встановлюється після трансформатора або точки введення в будівлю. ВРЩ (вводно-розподільчий щит) — аналогічна функція, термін частіше використовується для промислових об'єктів. Конструктивно обидва типи схожі — різниця переважно в назві в проєктній документації." },
+  { q: "До якого струму ви виготовляєте силові щити?", a: "Виготовляємо ГРЩ та ВРЩ до 630А. Точне значення визначається після розрахунку навантаження або за вашою схемою." },
+  { q: "Чи можна замовити щит з АВР?", a: "Так, реалізуємо схеми з автоматичним вводом резерву у складі ГРЩ або як окремий щит АВР. Схема може бути на контакторах, автоматах з мотоприводом або на спеціалізованому блоці — залежно від вимог та бюджету." },
+  { q: "Що робити, якщо готової схеми немає?", a: "Надішліть опис задачі — які споживачі, яке навантаження, які режими роботи. Розробимо принципову схему самостійно та узгодимо з вами перед початком виготовлення." },
+  { q: "Чи можна надати свої компоненти для збірки?", a: "Ні. Ми самостійно закуповуємо все обладнання відповідно до узгодженої специфікації і передаємо готовий виріб з гарантією. Це дозволяє нам відповідати за якість щита від початку до кінця." },
+  { q: "Яку документацію ви передаєте разом зі щитом?", a: "Паспорт виробу та принципову схему. Документи вкладаються безпосередньо у щит." },
+  { q: "Який термін виготовлення?", a: "Від 2 тижнів. Точний термін узгоджується при постановці у виготовлення — залежить від комплектації та завантаження виробництва." },
+  { q: "Як дізнатися вартість?", a: "Надішліть технічне завдання або схему — розрахуємо вартість протягом 1–2 робочих днів. Вартість залежить від складності схеми та обраних компонентів." },
+  { q: "Чи можна прискорити виготовлення?", a: "Залежить від завантаження виробництва та наявності компонентів. Уточнюйте при замовленні — постараємося знайти рішення." }
 ];
 
 const otherProducts = [
@@ -82,29 +51,63 @@ const otherProducts = [
         <span class="em-logo-sub">Виготовлення електрощитів</span>
       </span>
     </a>
+
     <nav aria-label="Головна навігація">
       <ul class="em-site-nav">
-        <li><a href="/produktsiia/" class="active" aria-current="page">Продукція</a></li>
-        <li><a href="/posluhy/">Послуги</a></li>
+        <li class="em-dropdown">
+          <a href="/posluhy-ta-produktsiia/" class="active" aria-current="page" tabindex="0">
+            Продукція
+            <svg class="em-nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="em-dropdown-panel">
+            <li><a href="/posluhy-ta-produktsiia/hrshch">ГРЩ / ВРЩ — силові щити</a></li>
+            <li><a href="/posluhy-ta-produktsiia/dymovydalennia">Щит димовидалення</a></li>
+            <li><a href="/posluhy-ta-produktsiia/dvyhuny">Керування двигунами</a></li>
+            <li><a href="/posluhy-ta-produktsiia/shuz">Керування засувками (ШУЗ)</a></li>
+            <li><a href="/posluhy-ta-produktsiia/krm">КРМ</a></li>
+            <li><a href="/posluhy-ta-produktsiia/zenitni-lihtari">Зенітні ліхтарі</a></li>
+            <li><a href="/posluhy-ta-produktsiia/ahro">Для агрогосподарств</a></li>
+          </ul>
+        </li>
+        <li class="em-dropdown">
+          <a href="/posluhy-ta-produktsiia/" tabindex="0">
+            Послуги
+            <svg class="em-nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="em-dropdown-panel">
+            <li><a href="/posluhy-ta-produktsiia/plk">Програмування ПЛК</a></li>
+            <li><a href="/posluhy-ta-produktsiia/elektromontazh">Електромонтажні роботи</a></li>
+          </ul>
+        </li>
         <li><a href="/vykonani-roboty/">Виконані роботи</a></li>
         <li><a href="/pro-nas/">Про нас</a></li>
         <li><a href="/kontakty/">Контакти</a></li>
       </ul>
     </nav>
+
     <div class="em-header-right">
-      <a href="tel:+380675097094" class="em-btn-primary em-btn-sm">+38 (067) 509-70-94</a>
+      <a href="tel:+380675097094" class="em-btn-primary em-btn-sm em-header-phone-btn">
+        <svg class="em-phone-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        <span>+38 (067) 509-70-94</span>
+      </a>
       <button class="em-burger" aria-label="Відкрити меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
+
   <nav class="em-mobile-nav" aria-label="Мобільна навігація">
-    <a href="/produktsiia/" class="active">Продукція</a>
-    <a href="/posluhy/">Послуги</a>
+    <a href="/posluhy-ta-produktsiia/" class="active">Продукція та послуги</a>
+    <div class="em-mobile-sub">
+      <a href="/posluhy-ta-produktsiia/hrshch">— ГРЩ / ВРЩ</a>
+      <a href="/posluhy-ta-produktsiia/dymovydalennia">— Димовидалення</a>
+      <a href="/posluhy-ta-produktsiia/dvyhuny">— Керування двигунами</a>
+      <a href="/posluhy-ta-produktsiia/shuz">— ШУЗ</a>
+      <a href="/posluhy-ta-produktsiia/krm">— КРМ</a>
+    </div>
     <a href="/vykonani-roboty/">Виконані роботи</a>
     <a href="/pro-nas/">Про нас</a>
     <a href="/kontakty/">Контакти</a>
-    <a href="tel:+380675097094" class="em-mobile-phone">📞 +38 (067) 509-70-94</a>
   </nav>
 </header>
 
@@ -119,7 +122,7 @@ const otherProducts = [
   </nav>
 </div>
 
-<!-- ===== HERO — без кнопки "Переглянути роботи" (вона у наступному блоці) ===== -->
+<!-- ===== HERO (зелений фон — em-bg2) ===== -->
 <div class="em-hero-product">
   <div class="em-hero-product-inner">
     <div class="em-hero-product-text">
@@ -145,208 +148,144 @@ const otherProducts = [
   </div>
 </div>
 
-<!-- ===== ГАЛЕРЕЯ + КНОПКА "ПЕРЕГЛЯНУТИ РОБОТИ" (em-section-alt, світліший фон) ===== -->
-<section class="em-section-alt">
-  <div class="em-section-alt-inner">
-    <span class="em-section-label">Наші роботи</span>
-    <h2>Виготовлення ГРЩ та ВРЩ — фото з нашого виробництва</h2>
-    <div class="em-product-gallery">
-      <div class="em-gallery-item em-gallery-item-large" data-caption="ГРЩ 400А, 3 введення — загальний вигляд">
-        <div class="em-gallery-placeholder"><span>Загальний вигляд</span></div>
-      </div>
-      <div class="em-gallery-item" data-caption="Внутрішній монтаж — маркування, шини, затискачі">
-        <div class="em-gallery-placeholder"><span>Внутрішній монтаж</span></div>
-      </div>
-      <div class="em-gallery-item" data-caption="Автоматичні вимикачі — фасад щита">
-        <div class="em-gallery-placeholder"><span>Вимикачі та автомати</span></div>
-      </div>
-      <div class="em-gallery-item" data-caption="Шини PE/N — введення кабелів">
-        <div class="em-gallery-placeholder"><span>Введення / шини</span></div>
-      </div>
-      <div class="em-gallery-item" data-caption="Однолінійна схема всередині дверцят">
-        <div class="em-gallery-placeholder"><span>Маркування та схема</span></div>
-      </div>
-    </div>
-    <div class="em-gallery-cta">
-      <a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ДЕ ЗАСТОСОВУЄТЬСЯ (em-section, білий фон) ===== -->
+<!-- ===== ГАЛЕРЕЯ + КНОПКА (білий фон — em-section, бо hero вже зелений) ===== -->
 <section class="em-section">
-  <span class="em-section-label">Застосування</span>
-  <h2>ГРЩ та ВРЩ — для яких об'єктів</h2>
-  <p class="em-lead">Щити цього класу встановлюють там, де потрібен надійний розподіл електроенергії на рівні вводу об'єкта.</p>
-  <div class="em-objects-grid">
-    <div class="em-object-card">
-      <div class="em-object-num">01</div>
-      <h3>Промислові підприємства</h3>
-      <p>Заводи, виробничі цехи, склади — як основний або резервний ввід живлення від трансформаторної підстанції.</p>
+  <span class="em-section-label">Наші роботи</span>
+  <h2>Виготовлення ГРЩ та ВРЩ — фото з нашого виробництва</h2>
+  <div class="em-product-gallery">
+    <div class="em-gallery-item em-gallery-item-large" data-caption="ГРЩ 400А, 3 введення — загальний вигляд">
+      <div class="em-gallery-placeholder"><span>Загальний вигляд</span></div>
     </div>
-    <div class="em-object-card">
-      <div class="em-object-num">02</div>
-      <h3>Об'єкти реконструкції</h3>
-      <p>Заміна застарілих щитів серій 1970–90-х. Оновлення електрогосподарства під нові навантаження та норми.</p>
+    <div class="em-gallery-item" data-caption="Внутрішній монтаж — маркування, шини, затискачі">
+      <div class="em-gallery-placeholder"><span>Внутрішній монтаж</span></div>
     </div>
-    <div class="em-object-card">
-      <div class="em-object-num">03</div>
-      <h3>Торгово-офісні центри</h3>
-      <p>Великі об'єкти з розгалуженою мережею живлення — щит як вузол розподілу між поверхами або секціями.</p>
+    <div class="em-gallery-item" data-caption="Автоматичні вимикачі — фасад щита">
+      <div class="em-gallery-placeholder"><span>Вимикачі та автомати</span></div>
     </div>
-    <div class="em-object-card">
-      <div class="em-object-num">04</div>
-      <h3>Підрядні організації</h3>
-      <p>Електромонтажні компанії, які ведуть будівництво або реконструкцію і потребують щит за схемою замовника.</p>
+    <div class="em-gallery-item" data-caption="Шини PE/N — введення кабелів">
+      <div class="em-gallery-placeholder"><span>Введення / шини</span></div>
     </div>
-    <div class="em-object-card">
-      <div class="em-object-num">05</div>
-      <h3>Агропромислові об'єкти</h3>
-      <p>Зернотоки, елеватори, насосні станції — де потрібна надійна комутація з можливістю швидкого обслуговування.</p>
+    <div class="em-gallery-item" data-caption="Однолінійна схема всередині дверцят">
+      <div class="em-gallery-placeholder"><span>Маркування та схема</span></div>
     </div>
-    <div class="em-object-card">
-      <div class="em-object-num">06</div>
-      <h3>Головні енергетики</h3>
-      <p>Замовники зі штатним енергетиком, які передають схему та ТЗ і хочуть отримати готовий щит під ключ.</p>
-    </div>
+  </div>
+  <div class="em-gallery-cta">
+    <a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи →</a>
   </div>
 </section>
 
-<!-- ===== ТЕХНІЧНІ ХАРАКТЕРИСТИКИ (em-section-alt) ===== -->
-<section class="em-section-alt">
+<!-- ===== ДЕ ЗАСТОСОВУЄТЬСЯ (зелений фон — em-section-alt) ===== -->
+<div class="em-section-alt">
   <div class="em-section-alt-inner">
-    <span class="em-section-label">Характеристики</span>
-    <h2>Технічні характеристики ГРЩ та ВРЩ</h2>
-    <table class="em-specs-table">
-      <tbody>
-        <tr><td class="em-specs-label">Номінальний струм</td><td class="em-specs-value">до 630А</td></tr>
-        <tr><td class="em-specs-label">Кількість вводів</td><td class="em-specs-value">1, 2 або 3 введення (у т.ч. з АВР)</td></tr>
-        <tr><td class="em-specs-label">Апарати захисту</td><td class="em-specs-value">Узгоджується з замовником</td></tr>
-        <tr><td class="em-specs-label">Збірні шини</td><td class="em-specs-value">Мідь, алюміній — залежно від ТЗ</td></tr>
-        <tr><td class="em-specs-label">Однолінійна схема</td><td class="em-specs-value">Виконується та додається у щит</td></tr>
-        <tr><td class="em-specs-label">Термін виготовлення</td><td class="em-specs-value">Від 2 тижнів, узгоджується при постановці у виготовлення</td></tr>
-        <tr><td class="em-specs-label">Гарантія</td><td class="em-specs-value">12 місяців</td></tr>
-        <tr><td class="em-specs-label">Доставка</td><td class="em-specs-value">Київ, Київська область, вся Україна</td></tr>
-      </tbody>
-    </table>
+    <span class="em-section-label">Застосування</span>
+    <h2>ГРЩ та ВРЩ — для яких об'єктів</h2>
+    <p class="em-lead">Щити цього класу встановлюють там, де потрібен надійний розподіл електроенергії на рівні вводу об'єкта.</p>
+    <div class="em-objects-grid">
+      <div class="em-object-card"><div class="em-object-num">01</div><h3>Промислові підприємства</h3><p>Заводи, виробничі цехи, склади — як основний або резервний ввід живлення від трансформаторної підстанції.</p></div>
+      <div class="em-object-card"><div class="em-object-num">02</div><h3>Об'єкти реконструкції</h3><p>Заміна застарілих щитів серій 1970–90-х. Оновлення електрогосподарства під нові навантаження та норми.</p></div>
+      <div class="em-object-card"><div class="em-object-num">03</div><h3>Торгово-офісні центри</h3><p>Великі об'єкти з розгалуженою мережею живлення — щит як вузол розподілу між поверхами або секціями.</p></div>
+      <div class="em-object-card"><div class="em-object-num">04</div><h3>Підрядні організації</h3><p>Електромонтажні компанії, які ведуть будівництво або реконструкцію і потребують щит за схемою замовника.</p></div>
+      <div class="em-object-card"><div class="em-object-num">05</div><h3>Агропромислові об'єкти</h3><p>Зернотоки, елеватори, насосні станції — де потрібна надійна комутація з можливістю швидкого обслуговування.</p></div>
+      <div class="em-object-card"><div class="em-object-num">06</div><h3>Головні енергетики</h3><p>Замовники зі штатним енергетиком, які передають схему та ТЗ і хочуть отримати готовий щит під ключ.</p></div>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- ===== КОМПОНЕНТИ ТА ВИРОБНИКИ (em-section, білий — переміщено вище, після характеристик) ===== -->
+<!-- ===== ХАРАКТЕРИСТИКИ (білий — em-section) ===== -->
 <section class="em-section">
-  <span class="em-section-label">Компоненти</span>
-  <h2>Компоненти та виробники</h2>
-  <p class="em-lead">Підбираємо під бюджет та наявність. Конкретний бренд узгоджується при прийомі замовлення.</p>
-  <div class="em-brands">
-    <div class="em-brands-group">
-      <div class="em-brands-group-label">Основні бренди</div>
-      <div class="em-brands-row">
-        <div class="em-brand-pill">ETI</div>
-        <div class="em-brand-pill">Hager</div>
-        <div class="em-brand-pill">Schneider Electric</div>
-        <div class="em-brand-pill">Eaton</div>
-      </div>
-    </div>
-    <div class="em-brands-group">
-      <div class="em-brands-group-label">Економ-комплектація</div>
-      <div class="em-brands-row">
-        <div class="em-brand-pill secondary">E-Next</div>
-        <div class="em-brand-pill secondary">Asko</div>
-        <div class="em-brand-pill secondary">Chint</div>
-      </div>
-    </div>
-  </div>
+  <span class="em-section-label">Характеристики</span>
+  <h2>Технічні характеристики ГРЩ та ВРЩ</h2>
+  <table class="em-specs-table">
+    <tbody>
+      <tr><td class="em-specs-label">Номінальний струм</td><td class="em-specs-value">до 630А</td></tr>
+      <tr><td class="em-specs-label">Кількість вводів</td><td class="em-specs-value">1, 2 або 3 введення (у т.ч. з АВР)</td></tr>
+      <tr><td class="em-specs-label">Апарати захисту</td><td class="em-specs-value">Узгоджується з замовником</td></tr>
+      <tr><td class="em-specs-label">Збірні шини</td><td class="em-specs-value">Мідь, алюміній — залежно від ТЗ</td></tr>
+      <tr><td class="em-specs-label">Однолінійна схема</td><td class="em-specs-value">Виконується та додається у щит</td></tr>
+      <tr><td class="em-specs-label">Термін виготовлення</td><td class="em-specs-value">Від 2 тижнів, узгоджується при постановці у виготовлення</td></tr>
+      <tr><td class="em-specs-label">Гарантія</td><td class="em-specs-value">12 місяців</td></tr>
+      <tr><td class="em-specs-label">Доставка</td><td class="em-specs-value">Київ, Київська область, вся Україна</td></tr>
+    </tbody>
+  </table>
 </section>
 
-<!-- ===== ЯК МИ ПРАЦЮЄМО (em-section-alt) ===== -->
-<section class="em-section-alt">
+<!-- ===== КОМПОНЕНТИ (зелений — em-section-alt) ===== -->
+<div class="em-section-alt">
   <div class="em-section-alt-inner">
-    <span class="em-section-label">Як ми працюємо</span>
-    <h2>5 кроків від ТЗ до готового щита</h2>
-    <div class="em-steps-row">
-      <div class="em-step">
-        <div class="em-step-num">01</div>
-        <h3>Технічне завдання</h3>
-        <p>Надсилаєте ТЗ, схему або описуєте задачу. Приймаємо PDF, DWG, фото, усний опис.</p>
-      </div>
-      <div class="em-step">
-        <div class="em-step-num">02</div>
-        <h3>Розрахунок та схема</h3>
-        <p>Розробляємо або перевіряємо схему, узгоджуємо вартість та строки. Відповідаємо за 1–2 дні.</p>
-      </div>
-      <div class="em-step">
-        <div class="em-step-num">03</div>
-        <h3>Оплата</h3>
-        <p>Після оплати виріб ставиться у виробництво.</p>
-      </div>
-      <div class="em-step">
-        <div class="em-step-num">04</div>
-        <h3>Збірка та перевірка</h3>
-        <p>Збираємо у Києві. Маркуємо, перевіряємо кожен щит перед відправкою.</p>
-      </div>
-      <div class="em-step">
-        <div class="em-step-num">05</div>
-        <h3>Передача з документацією</h3>
-        <p>Доставка по Києву та Київській обл. або Нова Пошта. Паспорт виробу та схема — у щиті.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ПЕРЕВАГИ (em-section) ===== -->
-<section class="em-section">
-  <span class="em-section-label">Переваги</span>
-  <h2>Чому замовляють у нас</h2>
-  <div class="em-why-grid">
-    <div class="em-why-card">
-      <h3>Досвід з 1999 року</h3>
-      <p>25+ років виготовлення щитів для промислових та комерційних об'єктів.</p>
-    </div>
-    <div class="em-why-card">
-      <h3>Робота за проєктною документацією</h3>
-      <p>Приймаємо схеми від будь-якої проєктної організації та збираємо точно за ними.</p>
-    </div>
-    <div class="em-why-card">
-      <h3>Розробляємо схеми самостійно</h3>
-      <p>Якщо немає проєкту — надішліть нам технічне завдання або опис того, що ви хочете. Ми самі розробимо схему та узгодимо з вами.</p>
-    </div>
-    <div class="em-why-card">
-      <h3>Тестування перед відправкою</h3>
-      <p>Кожен щит перевіряється до передачі замовнику. Паспорт виробу — з кожним щитом.</p>
-    </div>
-    <div class="em-why-card">
-      <h3>Доставка по всій Україні</h3>
-      <p>По Києву та Київській обл. — власним транспортом. По Україні — Новою Поштою.</p>
-    </div>
-    <div class="em-why-card">
-      <h3>Гарантія 12 місяців</h3>
-      <p>На кожен виготовлений щит — письмове гарантійне зобов'язання.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ (em-section-alt) ===== -->
-<section class="em-section-alt">
-  <div class="em-section-alt-inner">
-    <span class="em-section-label">Часті запитання</span>
-    <h2>Питання про виготовлення ГРЩ та ВРЩ</h2>
-    <div class="em-faq-list">
-      {faqItems.map((item, i) => (
-        <div class="em-faq-item">
-          <button class="em-faq-question" aria-expanded="false" data-faq-index={i}>
-            {item.q}
-            <svg class="em-faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="em-faq-answer"><p>{item.a}</p></div>
+    <span class="em-section-label">Компоненти</span>
+    <h2>Компоненти та виробники</h2>
+    <p class="em-lead">Підбираємо під бюджет та наявність. Конкретний бренд узгоджується при прийомі замовлення.</p>
+    <div class="em-brands">
+      <div class="em-brands-group">
+        <div class="em-brands-group-label">Основні бренди</div>
+        <div class="em-brands-row">
+          <div class="em-brand-pill">ETI</div>
+          <div class="em-brand-pill">Hager</div>
+          <div class="em-brand-pill">Schneider Electric</div>
+          <div class="em-brand-pill">Eaton</div>
         </div>
-      ))}
+      </div>
+      <div class="em-brands-group">
+        <div class="em-brands-group-label">Економ-комплектація</div>
+        <div class="em-brands-row">
+          <div class="em-brand-pill secondary">E-Next</div>
+          <div class="em-brand-pill secondary">Asko</div>
+          <div class="em-brand-pill secondary">Chint</div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- ===== ЯК МИ ПРАЦЮЄМО (білий — em-section) ===== -->
+<section class="em-section">
+  <span class="em-section-label">Як ми працюємо</span>
+  <h2>5 кроків від ТЗ до готового щита</h2>
+  <div class="em-steps-row">
+    <div class="em-step"><div class="em-step-num">01</div><h3>Технічне завдання</h3><p>Надсилаєте ТЗ, схему або описуєте задачу. Приймаємо PDF, DWG, фото, усний опис.</p></div>
+    <div class="em-step"><div class="em-step-num">02</div><h3>Розрахунок та схема</h3><p>Розробляємо або перевіряємо схему, узгоджуємо вартість та строки. Відповідаємо за 1–2 дні.</p></div>
+    <div class="em-step"><div class="em-step-num">03</div><h3>Оплата</h3><p>Після оплати виріб ставиться у виробництво.</p></div>
+    <div class="em-step"><div class="em-step-num">04</div><h3>Збірка та перевірка</h3><p>Збираємо у Києві. Маркуємо, перевіряємо кожен щит перед відправкою.</p></div>
+    <div class="em-step"><div class="em-step-num">05</div><h3>Передача з документацією</h3><p>Доставка по Києву та Київській обл. або Нова Пошта. Паспорт виробу та схема — у щиті.</p></div>
   </div>
 </section>
 
-<!-- ===== КОНТАКТНИЙ БЛОК (em-section, білий) ===== -->
-<section class="em-contact-section" id="kontakty-blok">
-  <div class="em-contact-inner">
+<!-- ===== ПЕРЕВАГИ (зелений — em-section-alt) ===== -->
+<div class="em-section-alt">
+  <div class="em-section-alt-inner">
+    <span class="em-section-label">Переваги</span>
+    <h2>Чому замовляють у нас</h2>
+    <div class="em-why-grid">
+      <div class="em-why-card"><h3>Досвід з 1999 року</h3><p>25+ років виготовлення щитів для промислових та комерційних об'єктів.</p></div>
+      <div class="em-why-card"><h3>Робота за проєктною документацією</h3><p>Приймаємо схеми від будь-якої проєктної організації та збираємо точно за ними.</p></div>
+      <div class="em-why-card"><h3>Розробляємо схеми самостійно</h3><p>Якщо немає проєкту — надішліть нам технічне завдання або опис того, що ви хочете. Ми самі розробимо схему та узгодимо з вами.</p></div>
+      <div class="em-why-card"><h3>Тестування перед відправкою</h3><p>Кожен щит перевіряється до передачі замовнику. Паспорт виробу — з кожним щитом.</p></div>
+      <div class="em-why-card"><h3>Доставка по всій Україні</h3><p>По Києву та Київській обл. — власним транспортом. По Україні — Новою Поштою.</p></div>
+      <div class="em-why-card"><h3>Гарантія 12 місяців</h3><p>На кожен виготовлений щит — письмове гарантійне зобов'язання.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FAQ (білий — em-section) ===== -->
+<section class="em-section">
+  <span class="em-section-label">Часті запитання</span>
+  <h2>Питання про виготовлення ГРЩ та ВРЩ</h2>
+  <div class="em-faq-list">
+    {faqItems.map((item, i) => (
+      <div class="em-faq-item">
+        <button class="em-faq-question" aria-expanded="false" data-faq-index={i}>
+          {item.q}
+          <svg class="em-faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="em-faq-answer"><p>{item.a}</p></div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ===== КОНТАКТНИЙ БЛОК (зелений — em-section-alt) ===== -->
+<div class="em-section-alt" id="kontakty-blok">
+  <div class="em-section-alt-inner em-contact-inner">
     <span class="em-section-label">Зв'яжіться з нами</span>
     <h2>Готові обговорити ваше замовлення — ГРЩ або ВРЩ</h2>
     <p class="em-lead">Зателефонуйте, напишіть на email або в месенджер — відповімо протягом 1–2 робочих днів та розрахуємо вартість.</p>
@@ -354,11 +293,11 @@ const otherProducts = [
     <div class="em-contact-text-grid">
       <div class="em-contact-text-item">
         <span class="em-contact-text-label">Телефон для зв'язку</span>
-        <span class="em-contact-text-value" id="phone-text">+38 (067) 509-70-94</span>
+        <span class="em-contact-text-value">+38 (067) 509-70-94</span>
       </div>
       <div class="em-contact-text-item">
         <span class="em-contact-text-label">Email для зв'язку</span>
-        <span class="em-contact-text-value" id="email-text">5033455@gmail.com</span>
+        <span class="em-contact-text-value">5033455@gmail.com</span>
       </div>
       <div class="em-contact-text-item">
         <span class="em-contact-text-label">Адреса</span>
@@ -396,31 +335,32 @@ const otherProducts = [
 
     <p class="em-contact-hours"><strong>Графік роботи:</strong> робочі дні з 9:00 до 17:00</p>
   </div>
-</section>
+</div>
 
-<!-- ===== ТАКОЖ ВИГОТОВЛЯЄМО (em-section-alt) ===== -->
-<section class="em-section-alt">
-  <div class="em-section-alt-inner">
-    <span class="em-section-label">Інша продукція та послуги</span>
-    <h2>Також виготовляємо</h2>
-    <div class="em-products-grid">
-      {otherProducts.map(p => (
-        <a href={p.href} class="em-product-card">
-          <div class="em-product-card-body"><h3>{p.title}</h3><p>{p.desc}</p></div>
-        </a>
-      ))}
-    </div>
+<!-- ===== ТАКОЖ ВИГОТОВЛЯЄМО (білий — em-section) ===== -->
+<section class="em-section">
+  <span class="em-section-label">Інша продукція та послуги</span>
+  <h2>Також виготовляємо</h2>
+  <div class="em-products-grid">
+    {otherProducts.map(p => (
+      <a href={p.href} class="em-product-card">
+        <div class="em-product-card-body"><h3>{p.title}</h3><p>{p.desc}</p></div>
+      </a>
+    ))}
   </div>
 </section>
 
 <!-- ===== G2 — ФУТЕР ===== -->
 <footer class="em-site-footer">
   <div class="em-footer-inner">
-    <span>© 2026 elektromontazh.kiev.ua — виробництво електрощитів, Київ та область</span>
-    <div class="em-footer-phone"><a href="tel:+380675097094">+38 (067) 509-70-94</a></div>
+    <span>© 2026 Електромонтаж — виробництво електрощитів, Київ та область</span>
+    <div class="em-footer-contacts">
+      <a href="tel:+380675097094" class="em-footer-phone">+38 (067) 509-70-94</a>
+      <a href="mailto:5033455@gmail.com" class="em-footer-email">5033455@gmail.com</a>
+    </div>
   </div>
 </footer>
 
-<script src="/js/em-site.js"></script>
+<script is:inline src="/js/em-site.js"></script>
 </body>
 </html>

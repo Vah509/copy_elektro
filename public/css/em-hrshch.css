@@ -9,11 +9,10 @@
 ════════════════════════════════════════ */
 .em-hero-product {
   background: var(--c-bg2);
-  border-bottom: 2px solid var(--c-accent-border);
   padding: 64px 24px;
 }
 
-@media (min-width: 801px) {
+@media (min-width: 901px) {
   .em-hero-product-inner {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -23,10 +22,10 @@
     margin: 0 auto;
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .em-hero-product-inner {
     display: block !important;
-    max-width: 640px;
+    max-width: 900px;
     margin: 0 auto;
   }
   .em-hero-product-photo { margin-bottom: 32px; }
@@ -114,7 +113,7 @@
 /* ════════════════════════════════════════
    ГАЛЕРЕЯ ПРОДУКТУ
 ════════════════════════════════════════ */
-@media (min-width: 641px) {
+@media (min-width: 901px) {
   .em-product-gallery {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -125,7 +124,7 @@
   }
   .em-gallery-item-large { grid-row: span 2 !important; }
 }
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .em-product-gallery {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -185,7 +184,7 @@
 /* ════════════════════════════════════════
    ДЕ ЗАСТОСОВУЄТЬСЯ — 6 карток
 ════════════════════════════════════════ */
-@media (min-width: 769px) {
+@media (min-width: 901px) {
   .em-objects-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -193,7 +192,7 @@
     margin-top: 8px;
   }
 }
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 900px) {
   .em-objects-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -201,7 +200,7 @@
     margin-top: 8px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .em-objects-grid {
     display: block !important;
     margin-top: 8px;
@@ -268,7 +267,7 @@
   font-size: 15px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .em-specs-table,
   .em-specs-table tbody,
   .em-specs-table tr,
@@ -436,7 +435,7 @@
   color: var(--c-text);
 }
 
-@media (min-width: 601px) and (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 900px) {
   .em-contact-text-grid { grid-template-columns: 1fr !important; }
   .em-contact-grid      { grid-template-columns: repeat(3, 1fr) !important; }
 }

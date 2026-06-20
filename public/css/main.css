@@ -196,20 +196,58 @@ h3 { font-size: 15px; }
   text-transform: uppercase;
   margin-top: 1px;
 }
-.em-header-right { display: flex; align-items: center; gap: 16px; }
+.em-header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+/* ===== Десктопне меню з підменю (dropdown) ===== */
 .em-site-nav { display: flex; gap: 28px; list-style: none; }
+.em-site-nav > li { position: relative; }
 .em-site-nav a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: var(--c-muted);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   font-family: var(--ff-body);
   transition: color var(--transition);
+  white-space: nowrap;
 }
 .em-site-nav a:hover,
 .em-site-nav a.active { color: var(--c-accent); }
+.em-nav-caret { width: 10px; height: 10px; flex-shrink: 0; }
 
-/* Гамбургер-кнопка (видна тільки на мобільному) */
+.em-dropdown { position: relative; }
+.em-dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background: #fff;
+  border: 1.5px solid var(--c-accent-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  padding: 8px;
+  margin-top: 8px;
+  z-index: 100;
+  list-style: none;
+  /* Створюємо невидиму зону зверху всередині самого меню */
+  padding-top: 15px; 
+  margin-top: 0; /* Прибираємо маргін, якщо він створював дірку */
+}
+.em-dropdown:hover .em-dropdown-panel,
+.em-dropdown:focus-within .em-dropdown-panel { display: block; }
+.em-dropdown-panel li a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 13.5px;
+  color: var(--c-text);
+}
+.em-dropdown-panel li a:hover { background: var(--c-bg2); color: var(--c-accent); }
+
+/* ===== Гамбургер-кнопка (тільки на мобільному, лише для списку розділів) ===== */
 .em-burger {
   display: none;
   flex-direction: column;
@@ -221,6 +259,7 @@ h3 { font-size: 15px; }
   border: none;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 .em-burger span {
   display: block;
@@ -234,7 +273,10 @@ h3 { font-size: 15px; }
 .em-burger.open span:nth-child(2) { opacity: 0; }
 .em-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Мобільне випадне меню */
+/* Телефон + кнопка замовлення — завжди видимі (і на мобільному) */
+.em-header-phone-btn { white-space: nowrap; }
+
+/* Мобільне випадне меню (тільки список розділів) */
 .em-mobile-nav {
   display: none;
   flex-direction: column;
@@ -254,11 +296,11 @@ h3 { font-size: 15px; }
   border-bottom: 1px solid var(--c-divider);
 }
 .em-mobile-nav a.active { color: var(--c-accent); }
-.em-mobile-nav .em-mobile-phone {
-  padding: 16px 24px;
-  background: var(--c-bg2);
-  color: var(--c-accent);
-  font-weight: 700;
+.em-mobile-nav .em-mobile-sub a {
+  padding-left: 40px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-muted);
 }
 
 /* ════════════════════════════════════════
@@ -651,21 +693,24 @@ h3 { font-size: 15px; }
   flex-wrap: wrap;
   gap: 12px;
 }
-.em-footer-phone a {
+.em-footer-contacts { display: flex; gap: 20px; flex-wrap: wrap; }
+.em-footer-phone,
+.em-footer-email {
   color: var(--c-text);
   text-decoration: none;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 15px;
   transition: color var(--transition);
 }
-.em-footer-phone a:hover { color: var(--c-accent); }
+.em-footer-phone:hover,
+.em-footer-email:hover { color: var(--c-accent); }
 
 /* ════════════════════════════════════════
    АДАПТИВ — строго парами min/max-width
 ════════════════════════════════════════ */
 
 /* ПЛАНШЕТ: 601px – 1024px */
-@media (min-width: 601px) and (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 900px) {
   .em-products-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .em-why-grid      { grid-template-columns: repeat(2, 1fr) !important; }
   .em-steps-row     { grid-template-columns: repeat(3, 1fr) !important; }
@@ -677,8 +722,19 @@ h3 { font-size: 15px; }
 @media (max-width: 600px) {
   .em-site-nav      { display: none !important; }
   .em-burger        { display: flex !important; }
-  .em-header-inner  { padding: 0 16px !important; }
-  .em-header-right .em-btn-primary { display: none !important; }
+  .em-header-inner  { padding: 0 12px !important; gap: 8px !important; }
+  .em-header-phone-btn {
+    font-size: 0 !important;
+    padding: 10px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+	z-index: 10;
+  }
+  .em-header-phone-btn .em-phone-icon { display: inline-block !important; width: 18px; height: 18px; }
+  .em-logo-sub      { display: none !important; }
   .em-products-grid { grid-template-columns: 1fr !important; }
   .em-why-grid      { grid-template-columns: 1fr !important; }
   .em-steps-row     { grid-template-columns: 1fr !important; }
