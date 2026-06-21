@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies & Test Astro Build
         id: astro_build
         run: |
-          npm ci
+          npm install
           npm run build # Тестируем сборку сайтов. Если ИИ ошибся в путях — тут процесс остановится.
 
       # --- БЛОК 2: СОХРАНЕНИЕ ИЗМЕНЕНИЙ (Если сборка прошла успешно) ---
