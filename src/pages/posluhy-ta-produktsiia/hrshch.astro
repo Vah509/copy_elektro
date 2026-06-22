@@ -154,39 +154,87 @@ const otherProducts = [
       <p class="em-hero-product-contact">Або зателефонуйте: <a href="tel:+380675097094">+38 (067) 509-70-94</a></p>
     </div>
     <div class="em-hero-product-photo">
-      <div class="em-hero-photo-placeholder">
-        <span>Фото ГРЩ / ВРЩ</span>
-      </div>
-      <div class="em-hero-photo-badge">ГРЩ 400А · 3 введення · Hager</div>
+      <img
+        src="/images/hrshch/hrshch-avr-250a-zovnishnii-vyhlyad-kyiv-2026-06-01.jpg"
+        alt="Головний розподільний щит ГРЩ з АВР 250А — зовнішній вигляд, двосекційний корпус, Київ"
+        width="1044" height="1800"
+        loading="eager"
+      />
+      <div class="em-hero-photo-badge">ГРЩ з АВР · 250А · ETI · 2 секції</div>
     </div>
   </div>
 </div>
 
-<!-- ===== ГАЛЕРЕЯ + КНОПКА (білий фон — em-section, бо hero вже зелений) =====
-     Лайтбокс уже підключений (em-site.js + .em-lightbox в кінці сторінки).
-     Коли з'являться реальні фото: на потрібному .em-gallery-item пропишіть
-     data-full="/шлях/до/повного-фото.jpg" і замініть .em-gallery-placeholder
-     на <img src="/шлях/до/міні.jpg" alt="..."> — більше нічого міняти не треба,
-     клік і зум-ефект увімкнуться автоматично. -->
+<!-- ===== ГАЛЕРЕЯ 8 фото (1 велике + 7 малих) ===== -->
 <section class="em-section">
   <span class="em-section-label">Наші роботи</span>
   <h2>Виготовлення ГРЩ та ВРЩ — фото з нашого виробництва</h2>
   <div class="em-product-gallery">
-    <div class="em-gallery-item em-gallery-item-large" data-caption="ГРЩ 400А, 3 введення — загальний вигляд" data-full="">
-      <div class="em-gallery-placeholder"><span>Загальний вигляд</span></div>
+
+    <div class="em-gallery-item em-gallery-item-large"
+         data-caption="ГРЩ з АВР 250А — зовнішній вигляд, двосекційний корпус"
+         data-full="/images/hrshch/hrshch-avr-250a-zovnishnii-vyhlyad-kyiv-2026-06-01.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-zovnishnii-vyhlyad-kyiv-2026-06-01.jpg"
+           alt="ГРЩ з АВР 250А — зовнішній вигляд"
+           width="1044" height="1800" loading="lazy" />
     </div>
-    <div class="em-gallery-item" data-caption="Внутрішній монтаж — маркування, шини, затискачі" data-full="">
-      <div class="em-gallery-placeholder"><span>Внутрішній монтаж</span></div>
+
+    <div class="em-gallery-item"
+         data-caption="Обидві секції відкриті — ліва силова, права АВР"
+         data-full="/images/hrshch/hrshch-avr-250a-obydvi-sektsii-vidkryti-kyiv-2026-06-02.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-obydvi-sektsii-vidkryti-kyiv-2026-06-02.jpg"
+           alt="ГРЩ з АВР — обидві секції відкриті"
+           width="1350" height="1800" loading="lazy" />
     </div>
-    <div class="em-gallery-item" data-caption="Автоматичні вимикачі — фасад щита" data-full="">
-      <div class="em-gallery-placeholder"><span>Вимикачі та автомати</span></div>
+
+    <div class="em-gallery-item"
+         data-caption="Блок керування АВР — контактори, автомати, секції АВР"
+         data-full="/images/hrshch/hrshch-avr-250a-blok-keruvannia-avr-kyiv-2026-06-03.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-blok-keruvannia-avr-kyiv-2026-06-03.jpg"
+           alt="Блок керування АВР — внутрішній монтаж"
+           width="1350" height="1800" loading="lazy" />
     </div>
-    <div class="em-gallery-item" data-caption="Шини PE/N — введення кабелів" data-full="">
-      <div class="em-gallery-placeholder"><span>Введення / шини</span></div>
+
+    <div class="em-gallery-item"
+         data-caption="Ліва секція — вводний автомат ETI, лічильник NIK 2300"
+         data-full="/images/hrshch/hrshch-avr-250a-vvid-lichylnyk-nik-kyiv-2026-06-04.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-vvid-lichylnyk-nik-kyiv-2026-06-04.jpg"
+           alt="Вводний автомат ETI та лічильник NIK у ГРЩ"
+           width="1350" height="1800" loading="lazy" />
     </div>
-    <div class="em-gallery-item" data-caption="Однолінійна схема всередині дверцят" data-full="">
-      <div class="em-gallery-placeholder"><span>Маркування та схема</span></div>
+
+    <div class="em-gallery-item"
+         data-caption="Автомати ETI 250А та 125А — шинний міст, розподіл навантаження"
+         data-full="/images/hrshch/hrshch-avr-250a-avtomaty-eti-shynnyi-mist-kyiv-2026-06-05.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-avtomaty-eti-shynnyi-mist-kyiv-2026-06-05.jpg"
+           alt="Автомати ETI 250А та 125А з шинним мостом у ГРЩ"
+           width="1350" height="1800" loading="lazy" />
     </div>
+
+    <div class="em-gallery-item"
+         data-caption="Мідна нейтральна шина N — підключення кабелів"
+         data-full="/images/hrshch/hrshch-avr-250a-midna-shyna-n-kyiv-2026-06-06.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-midna-shyna-n-kyiv-2026-06-06.jpg"
+           alt="Мідна шина N у головному розподільному щиті"
+           width="1800" height="1350" loading="lazy" />
+    </div>
+
+    <div class="em-gallery-item"
+         data-caption="Кабельні наконечники ПВ3нГ-LS — акуратна розводка по клемам"
+         data-full="/images/hrshch/hrshch-avr-250a-kabelni-nakonehniky-kyiv-2026-06-07.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-kabelni-nakonehniky-kyiv-2026-06-07.jpg"
+           alt="Кабельні наконечники та клеми в електрощиті ГРЩ"
+           width="1800" height="1350" loading="lazy" />
+    </div>
+
+    <div class="em-gallery-item"
+         data-caption="Однолінійна схема всередині дверцят — маркування секцій АВР"
+         data-full="/images/hrshch/hrshch-avr-250a-skhema-markuvannia-kyiv-2026-06-08.jpg">
+      <img src="/images/hrshch/hrshch-avr-250a-skhema-markuvannia-kyiv-2026-06-08.jpg"
+           alt="Однолінійна схема та маркування в щиті ГРЩ з АВР"
+           width="1044" height="1800" loading="lazy" />
+    </div>
+
   </div>
   <div class="em-gallery-cta">
     <a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи →</a>
