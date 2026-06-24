@@ -34,11 +34,14 @@ jobs:
           
           ZIP_FILE=$(ls ai-updates/*.zip | head -n 1)
           if [ -f "$ZIP_FILE" ]; then
-            # 1. Распаковываем
+            # 1. Сохраняем список только новых JPEG из архива во временный текстовый файл
+            unzip -l "$ZIP_FILE" | awk '{print $4}' | grep -E "\.(jpg|jpeg)$" | tr -d '\r' > unzip_list.txt || true
+            
+            # 2. Распаковываем во временную папку
             mkdir ./temp_unzip
             unzip -o "$ZIP_FILE" -d ./temp_unzip
             
-            # 2. Удаление файлов по списку delete.txt
+            # 3. Удаление файлов по списку delete.txt
             if [ -f "./temp_unzip/delete.txt" ]; then
               while IFS= read -r file_to_delete || [ -n "$file_to_delete" ]; do
                 clean_path=$(echo "$file_to_delete" | tr -d '\r' | xargs)
@@ -49,49 +52,42 @@ jobs:
               rm ./temp_unzip/delete.txt
             fi
             
-            # 3. Переносим на место, затирая старые файлы
+            # 4. Переносим все распакованные файлы на место в репозиторий
             cp -rf ./temp_unzip/* ./
             rm -rf ./temp_unzip
             rm "$ZIP_FILE"
             
-            # 4. Устанавливаем sharp локально для быстрой обработки
+            # 5. Устанавливаем sharp локально
             npm install sharp --no-save
             
-            # 5. Запускаем Node.js скрипт инспекции (он не ломается на JPEG)
+            # 6. Запускаем Node.js скрипт (он берет список строго из файла unzip_list.txt)
             node -e '
             const fs = require("fs");
-            const path = require("path");
             const sharp = require("sharp");
             
             async function processImages() {
               const reportFile = "tg_image_report.txt";
-              fs.writeFileSync(reportFile, "⏱️ *'"$CURRENT_TIME"'*\n📸 *Инспекция фото:*\n");
+              const listFile = "unzip_list.txt";
               
-              // Ищем картинки в репозитории (базовые папки)
-              function getFiles(dir, files_ = []) {
-                const files = fs.readdirSync(dir);
-                for (const i in files) {
-                  const name = dir + "/" + files[i];
-                  if (fs.statSync(name).isDirectory()) {
-                    getFiles(name, files_);
-                  } else if (/\.(jpg|jpeg)$/i.test(name)) {
-                    files_.push(name);
-                  }
-                }
-                return files_;
-              }
+              fs.writeFileSync(reportFile, `⏱️ *'${CURRENT_TIME}'*\n📸 *Инспекция фото:*\n`);
               
-              let allFiles = [];
-              if (fs.existsSync("./public/images")) allFiles = getFiles("./public/images");
-              if (fs.existsSync("./src/assets")) allFiles = allFiles.concat(getFiles("./src/assets"));
-              
-              if (allFiles.length === 0) {
+              if (!fs.existsSync(listFile)) {
                 fs.appendFileSync(reportFile, "Новых изображений в архиве нет.\n");
                 return;
               }
               
+              const content = fs.readFileSync(listFile, "utf8");
+              const allFiles = content.split("\n")
+                .map(f => f.trim())
+                .filter(f => f && (f.endsWith(".jpg") || f.endsWith(".jpeg")) && fs.existsSync(f));
+              
+              if (allFiles.length === 0) {
+                fs.appendFileSync(reportFile, "Новых изображений в архиве нет.\n");
+                if (fs.existsSync(listFile)) fs.unlinkSync(listFile);
+                return;
+              }
+              
               for (const file of allFiles) {
-                const shortPath = file.replace("./", "");
                 try {
                   const stat = fs.statSync(file);
                   let origSizeKB = Math.round(stat.size / 1024);
@@ -101,21 +97,22 @@ jobs:
                   const meta = await image.metadata();
                   
                   if (meta.width <= 1200) {
-                    fs.appendFileSync(reportFile, `• \`${shortPath}\` — ok\n`);
+                    fs.appendFileSync(reportFile, `• \`${file}\` — ok\n`);
                   } else {
-                    // Бережное сжатие через профессиональный sharp
                     const buffer = await image.resize({ width: 1200, withoutEnlargement: true }).jpeg({ quality: 85 }).toBuffer();
                     fs.writeFileSync(file, buffer);
                     
                     let newSizeKB = Math.round(buffer.length / 1024);
                     let newSizeStr = newSizeKB >= 1024 ? (newSizeKB / 1024).toFixed(1) + " MB" : newSizeKB + " KB";
                     
-                    fs.appendFileSync(reportFile, `• \`${shortPath}\` — ${origSizeStr} — ${newSizeStr} — опт.\n`);
+                    fs.appendFileSync(reportFile, `• \`${file}\` — ${origSizeStr} — ${newSizeStr} — опт.\n`);
                   }
                 } catch (err) {
-                  fs.appendFileSync(reportFile, `• \`${shortPath}\` — ошибка анализа\n`);
+                  fs.appendFileSync(reportFile, `• \`${file}\` — ошибка анализа\n`);
                 }
               }
+              
+              if (fs.existsSync(listFile)) fs.unlinkSync(listFile);
             }
             processImages();
             '
