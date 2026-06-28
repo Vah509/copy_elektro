@@ -51,25 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
   let lbItems = []; // масив {src, caption}
   let lbIndex = 0;
 
-  function emBuildItems() {
-    lbItems = [];
-    document.querySelectorAll('.em-gallery-item').forEach(item => {
-      const full = item.getAttribute('data-full');
-      if (full) lbItems.push({ src: full, caption: item.getAttribute('data-caption') || '' });
-    });
-  }
-
   function emShowSlide(idx) {
     if (!lightboxImg || lbItems.length === 0) return;
-    lbIndex = ((idx % lbItems.length) + lbItems.length) % lbItems.length; // нескінченний цикл
+    lbIndex = ((idx % lbItems.length) + lbItems.length) % lbItems.length;
     lightboxImg.src = lbItems[lbIndex].src;
     lightboxImg.alt = lbItems[lbIndex].caption;
     if (lightboxCaption) lightboxCaption.textContent = lbItems[lbIndex].caption;
   }
 
-  function emOpenLightbox(startIdx) {
+  function emOpenLightbox(items, startIdx) {
     if (!lightbox) return;
-    emBuildItems();
+    lbItems = items;
     emShowSlide(startIdx);
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -81,11 +73,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // Клік по картці галереї
-  document.querySelectorAll('.em-gallery-item').forEach((item, i) => {
+  // Клік по картці галереї — збираємо всі одразу, потім вішаємо обробники
+  const galleryItems = [];
+  document.querySelectorAll('.em-gallery-item').forEach(item => {
+    const full = item.getAttribute('data-full');
+    if (full) galleryItems.push({ src: full, caption: item.getAttribute('data-caption') || '' });
+  });
+  document.querySelectorAll('.em-gallery-item').forEach(item => {
     const full = item.getAttribute('data-full');
     if (!full) return;
-    item.addEventListener('click', () => emOpenLightbox(i));
+    const idx = galleryItems.findIndex(x => x.src === full);
+    item.addEventListener('click', () => emOpenLightbox([...galleryItems], idx));
+  });
+
+  // Клік по фото hero-коллажу — окремий масив з 4 фото
+  const heroItems = [];
+  document.querySelectorAll('.em-hero-collage-item').forEach(item => {
+    const img = item.querySelector('img');
+    if (!img) return;
+    heroItems.push({ src: img.src, caption: img.alt || '' });
+  });
+  document.querySelectorAll('.em-hero-collage-item').forEach((item, i) => {
+    const img = item.querySelector('img');
+    if (!img) return;
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', () => emOpenLightbox([...heroItems], i));
   });
 
   if (lightboxClose) lightboxClose.addEventListener('click', emCloseLightbox);
@@ -115,5 +127,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Math.abs(dx) > 50) emShowSlide(lbIndex + (dx < 0 ? 1 : -1));
     }, { passive: true });
   }
+
+  /* ===== Кнопка «Вгору» ===== */
+  const scrollBtn = document.createElement('button');
+  scrollBtn.className = 'em-scroll-top';
+  scrollBtn.setAttribute('aria-label', 'Повернутися вгору');
+  scrollBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(scrollBtn);
+
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  }, { passive: true });
 
 });
