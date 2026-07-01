@@ -14,21 +14,16 @@ const works = allWorks.sort((a, b) =>
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 
-// Типи які є в роботах (для фільтру)
+// Об'єднаний список фільтрів: спочатку типи які є в роботах, потім теги які є в роботах
 const usedTypes = Object.keys(TYPE_LABELS).filter(t =>
   works.some(w => w.data.types.includes(t))
 );
+const usedTags = Object.keys(TAG_LABELS).filter(t =>
+  works.some(w => w.data.tags.includes(t))
+);
 
-// Передаємо дані для JS фільтру
-const worksData = works.map(w => ({
-  slug: w.slug,
-  title: w.data.title,
-  types: w.data.types,
-  tags: w.data.tags,
-  brands: w.data.brands,
-  photo: w.data.photos[0].src,
-  photoAlt: w.data.photos[0].caption,
-}));
+// Об'єднані лейбли для JS (передаємо в скрипт)
+const ALL_LABELS = { ...TYPE_LABELS, ...TAG_LABELS };
 ---
 <!DOCTYPE html>
 <html lang="uk">
@@ -48,33 +43,40 @@ const worksData = works.map(w => ({
 <body>
 
 <Header activePage="vykonani-roboty" />
-
 <Breadcrumbs current="Виконані роботи" simple={true} />
 
-<!-- Фільтр -->
+<!-- Об'єднаний фільтр: типи + теги -->
 <div class="em-works-filter-wrap">
   <div class="em-works-filter" id="em-filter">
-    <button
-      type="button"
-      class="em-filter-btn active"
-      data-type="all"
-    >
+
+    <!-- Всі роботи -->
+    <button type="button" class="em-filter-btn active" data-filter="all" data-kind="all">
       Всі роботи
       <span class="em-filter-count">({works.length})</span>
     </button>
+
+    <!-- Розділи (types) -->
     {usedTypes.map(t => {
       const count = works.filter(w => w.data.types.includes(t)).length;
       return (
-        <button
-          type="button"
-          class="em-filter-btn"
-          data-type={t}
-        >
+        <button type="button" class="em-filter-btn em-filter-btn--type" data-filter={t} data-kind="type">
           {TYPE_LABELS[t]}
           <span class="em-filter-count">({count})</span>
         </button>
       );
     })}
+
+    <!-- Теги -->
+    {usedTags.map(t => {
+      const count = works.filter(w => w.data.tags.includes(t)).length;
+      return (
+        <button type="button" class="em-filter-btn em-filter-btn--tag" data-filter={t} data-kind="tag">
+          {TAG_LABELS[t]}
+          <span class="em-filter-count">({count})</span>
+        </button>
+      );
+    })}
+
   </div>
 </div>
 
@@ -86,6 +88,7 @@ const worksData = works.map(w => ({
         href={`/vykonani-roboty/${w.slug}/`}
         class="em-work-card"
         data-types={w.data.types.join(',')}
+        data-tags={w.data.tags.join(',')}
       >
         <div class="em-work-card-photo">
           <img
@@ -97,14 +100,10 @@ const worksData = works.map(w => ({
         <div class="em-work-card-body">
           <div class="em-work-card-tags">
             {w.data.types.map(t => (
-              <span class="em-work-tag em-work-tag--type">
-                {TYPE_LABELS[t] ?? t}
-              </span>
+              <span class="em-work-tag em-work-tag--type">{TYPE_LABELS[t] ?? t}</span>
             ))}
             {w.data.tags.map(t => (
-              <span class="em-work-tag em-work-tag--tag">
-                {TAG_LABELS[t] ?? t}
-              </span>
+              <span class="em-work-tag em-work-tag--tag">{TAG_LABELS[t] ?? t}</span>
             ))}
           </div>
           <div class="em-work-card-title">{w.data.title}</div>
@@ -114,8 +113,6 @@ const worksData = works.map(w => ({
       </a>
     ))}
   </div>
-
-  <!-- Пагінація -->
   <div class="em-works-pagination" id="em-pagination"></div>
 </div>
 
@@ -125,53 +122,57 @@ const worksData = works.map(w => ({
 
 <script is:inline src="/js/em-site.js"></script>
 
-<!-- JS фільтр + пагінація -->
-<script define:vars={{ worksData, TYPE_LABELS, TAG_LABELS }}>
+<script define:vars={{ ALL_LABELS }}>
 (function() {
   const PER_PAGE = 15;
-  let activeType = 'all';
-  let currentPage = 1;
+  let activeFilter = 'all';
+  let activeKind   = 'all'; // 'all' | 'type' | 'tag'
+  let currentPage  = 1;
 
-  // Читаємо URL параметр ?type=hrshch
+  // Читаємо URL параметри ?type=hrshch або ?tag=avr
   const urlParams = new URLSearchParams(window.location.search);
   const typeParam = urlParams.get('type');
-  if (typeParam && typeParam !== 'all') {
-    activeType = typeParam;
-  }
+  const tagParam  = urlParams.get('tag');
+  if (typeParam) { activeFilter = typeParam; activeKind = 'type'; }
+  if (tagParam)  { activeFilter = tagParam;  activeKind = 'tag'; }
 
-  const grid = document.getElementById('em-works-grid');
+  const grid           = document.getElementById('em-works-grid');
   const paginationWrap = document.getElementById('em-pagination');
-  const filterBtns = document.querySelectorAll('.em-filter-btn');
-  const allCards = Array.from(grid.querySelectorAll('.em-work-card'));
+  const filterBtns     = document.querySelectorAll('.em-filter-btn');
+  const allCards       = Array.from(grid.querySelectorAll('.em-work-card'));
 
-  // Встановлюємо активну кнопку фільтру
-  function setActiveFilter(type) {
+  function setActiveFilter() {
     filterBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.type === type);
+      btn.classList.toggle('active',
+        btn.dataset.filter === activeFilter && btn.dataset.kind === activeKind ||
+        activeFilter === 'all' && btn.dataset.kind === 'all'
+      );
     });
   }
 
-  // Рендер сітки з фільтром і пагінацією
   function render() {
-    // Фільтрація
-    const filtered = activeType === 'all'
+    const filtered = activeFilter === 'all'
       ? allCards
       : allCards.filter(card => {
-          const types = card.dataset.types.split(',');
-          return types.includes(activeType);
+          if (activeKind === 'type') {
+            return card.dataset.types.split(',').includes(activeFilter);
+          }
+          if (activeKind === 'tag') {
+            const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+            return tags.includes(activeFilter);
+          }
+          return true;
         });
 
     const totalPages = Math.ceil(filtered.length / PER_PAGE);
     if (currentPage > totalPages) currentPage = 1;
 
-    const start = (currentPage - 1) * PER_PAGE;
+    const start   = (currentPage - 1) * PER_PAGE;
     const visible = filtered.slice(start, start + PER_PAGE);
 
-    // Показуємо/ховаємо картки
-    allCards.forEach(card => { card.style.display = 'none'; });
-    visible.forEach(card => { card.style.display = 'flex'; });
+    allCards.forEach(card  => { card.style.display = 'none'; });
+    visible.forEach(card   => { card.style.display = 'flex'; });
 
-    // Пагінація
     if (totalPages > 1) {
       paginationWrap.innerHTML = Array.from({ length: totalPages }, (_, i) => i + 1)
         .map(p => `<button type="button" class="em-pg-btn${p === currentPage ? ' active' : ''}" data-page="${p}">${p}</button>`)
@@ -187,19 +188,18 @@ const worksData = works.map(w => ({
       paginationWrap.innerHTML = '';
     }
 
-    setActiveFilter(activeType);
+    setActiveFilter();
   }
 
-  // Обробники фільтрів
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      activeType = btn.dataset.type;
-      currentPage = 1;
+      activeFilter = btn.dataset.filter;
+      activeKind   = btn.dataset.kind;
+      currentPage  = 1;
       render();
     });
   });
 
-  // Перший рендер
   render();
 })();
 </script>

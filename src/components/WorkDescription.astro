@@ -1,17 +1,18 @@
 ---
 // Блок: теги + H1 + текст опису (через slot)
-import { TYPE_LABELS, TAG_LABELS } from '../data/tags-registry';
+import { TYPE_LABELS, TAG_LABELS, PROPERTY_LABELS } from '../data/tags-registry';
 
 interface Props {
   title: string;
   types: string[];
   tags: string[];
+  properties: string[];
 }
-const { title, types, tags } = Astro.props;
+const { title, types, tags, properties } = Astro.props;
 ---
 
 <div class="em-work-description">
-  <!-- Теги — два класи, однаковий вигляд -->
+  <!-- Розділи + теги — беруть участь у фільтрі -->
   <div class="em-work-tags">
     {types.map(t => (
       <span class="em-work-tag em-work-tag--type">
@@ -28,6 +29,15 @@ const { title, types, tags } = Astro.props;
   <!-- Заголовок -->
   <h1 class="em-work-title">{title}</h1>
 
+  <!-- Властивості — інформаційні, не фільтруються -->
+  {properties.length > 0 && (
+    <div class="em-work-properties">
+      {properties.map(p => (
+        <span class="em-work-property">{PROPERTY_LABELS[p] ?? p}</span>
+      ))}
+    </div>
+  )}
+
   <!-- Текст опису — рендериться через slot -->
   <div class="em-work-body">
     <slot />
@@ -40,6 +50,8 @@ const { title, types, tags } = Astro.props;
   margin: 0 auto;
   padding: 32px 24px 40px;
 }
+
+/* Теги/розділи */
 .em-work-tags {
   display: flex;
   flex-wrap: wrap;
@@ -61,11 +73,34 @@ const { title, types, tags } = Astro.props;
 .em-work-tag--type {}
 .em-work-tag--tag  {}
 
+/* Властивості */
+.em-work-properties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.em-work-property {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--c-divider);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-muted);
+  font-family: var(--ff-body);
+  white-space: nowrap;
+}
+
+/* Заголовок */
 .em-work-title {
   font-size: clamp(24px, 4vw, 36px);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   color: var(--c-head);
 }
+
+/* Текст опису */
 .em-work-body {
   font-family: var(--ff-body);
   font-size: 15px;

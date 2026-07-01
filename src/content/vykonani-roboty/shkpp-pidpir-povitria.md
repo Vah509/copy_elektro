@@ -2,7 +2,8 @@
 title: "Шафа керування підпором повітря (ШКПП)"
 date: 2026-06-29
 types: ["dvyhuny", "dymovydalennia"]
-tags: ["pryamyi-pusk", "kontrol-faz"]
+tags: []
+properties: ["pryamyi-pusk", "kontrol-faz"]
 description: "Шафа керування вентилятором підпору повітря — частина системи протипожежної автоматики. Прямий пуск, контроль чергування фаз. ETI."
 specs:
   - label: "Призначення"
