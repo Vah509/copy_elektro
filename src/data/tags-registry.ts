@@ -37,4 +37,5 @@ export const PROPERTY_LABELS: Record<string, string> = {
   'chastotnyy-peretvoryuvach': 'Частотний перетворювач',
   'kontrol-faz':               'Контроль фаз',
   'plavnyi-pusk':              'Плавний пуск',
+  'avr-na-kontaktorakh':       'АВР на контакторах',
 };
