@@ -211,6 +211,13 @@ declare module 'astro:content' {
   collection: "vykonani-roboty";
   data: InferEntrySchema<"vykonani-roboty">
 } & { render(): Render[".md"] };
+"hrshch-avr-400a-technoelectric.md": {
+	id: "hrshch-avr-400a-technoelectric.md";
+  slug: "hrshch-avr-400a-technoelectric";
+  body: string;
+  collection: "vykonani-roboty";
+  data: InferEntrySchema<"vykonani-roboty">
+} & { render(): Render[".md"] };
 "hrshch-rubilnyk-400a-oblik.md": {
 	id: "hrshch-rubilnyk-400a-oblik.md";
   slug: "hrshch-rubilnyk-400a-oblik";
