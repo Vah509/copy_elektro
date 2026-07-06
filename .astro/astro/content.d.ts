@@ -232,6 +232,13 @@ declare module 'astro:content' {
   collection: "vykonani-roboty";
   data: InferEntrySchema<"vykonani-roboty">
 } & { render(): Render[".md"] };
+"shuz-zasuvka.md": {
+	id: "shuz-zasuvka.md";
+  slug: "shuz-zasuvka";
+  body: string;
+  collection: "vykonani-roboty";
+  data: InferEntrySchema<"vykonani-roboty">
+} & { render(): Render[".md"] };
 "vrshch-200a-magazyn-kavyarnia.md": {
 	id: "vrshch-200a-magazyn-kavyarnia.md";
   slug: "vrshch-200a-magazyn-kavyarnia";
