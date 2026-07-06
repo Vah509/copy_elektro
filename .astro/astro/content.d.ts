@@ -141,6 +141,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"vykonani-roboty": {
+"avr-shafa-try-vvody-200a.md": {
+	id: "avr-shafa-try-vvody-200a.md";
+  slug: "avr-shafa-try-vvody-200a";
+  body: string;
+  collection: "vykonani-roboty";
+  data: InferEntrySchema<"vykonani-roboty">
+} & { render(): Render[".md"] };
 "dvyhuny-plavnyi-pusk-4x15kw-ahro.md": {
 	id: "dvyhuny-plavnyi-pusk-4x15kw-ahro.md";
   slug: "dvyhuny-plavnyi-pusk-4x15kw-ahro";
