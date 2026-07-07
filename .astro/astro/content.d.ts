@@ -246,6 +246,13 @@ declare module 'astro:content' {
   collection: "vykonani-roboty";
   data: InferEntrySchema<"vykonani-roboty">
 } & { render(): Render[".md"] };
+"post-upravlinnia-osvitlenniiam-16-kanaliv.md": {
+	id: "post-upravlinnia-osvitlenniiam-16-kanaliv.md";
+  slug: "post-upravlinnia-osvitlenniiam-16-kanaliv";
+  body: string;
+  collection: "vykonani-roboty";
+  data: InferEntrySchema<"vykonani-roboty">
+} & { render(): Render[".md"] };
 "shafa-keruvannia-zenitni-lihtari-ovr-pr100.md": {
 	id: "shafa-keruvannia-zenitni-lihtari-ovr-pr100.md";
   slug: "shafa-keruvannia-zenitni-lihtari-ovr-pr100";
