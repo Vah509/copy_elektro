@@ -1,0 +1,366 @@
+---
+// ============================================================
+// ProductLayout.astro — elektroschit.com.ua
+// Шаблон для продуктових сторінок (8 сторінок, крім elektromontazh).
+//
+// Props:
+//   page         — SEO + crumbs (передається у BaseLayout)
+//   slug         — для AlsoMake.currentSlug
+//   hero         — блок 1: hero + колаж
+//   gallery      — блок 2: галерея
+//   objects      — блок 3: застосування
+//   specs        — блок 5: характеристики
+//   brands?      — блок 6: компоненти (відсутній у plk)
+//   steps        — блок 7: як ми працюємо
+//   why          — блок 8: переваги
+//   faq          — блок 9: FAQ
+//   contactTitle — блок 10: заголовок ContactBlock
+//
+// Slots:
+//   head         — додаткові <link> або <meta> у <head>
+//   extra1       — блок 4a (між Застосування і Характеристики), білий фон
+//   extra2       — блок 4b (після extra1), зелений фон — тільки plk
+//
+// Порядок і чергування фонів:
+//   1. Hero           → зелений  (em-hero-product)
+//   2. Галерея        → білий    (em-section)
+//   3. Застосування   → зелений  (em-section-alt)
+//   [extra1]          → білий    (сторінка задає клас сама)
+//   [extra2]          → зелений  (сторінка задає клас сама)
+//   5. Характеристики → білий    (em-section)
+//   6. Компоненти     → зелений  (em-section-alt) — якщо brands є
+//      [якщо brands відсутній: <hr class="em-divider"> між двома білими]
+//   7. Як ми працюємо → білий    (em-section)
+//   8. Переваги       → зелений  (em-section-alt)
+//   9. FAQ            → білий    (em-section, вбудовано у FaqAccordion)
+//  10. ContactBlock   → зелений  (вбудовано)
+//  11. AlsoMake       → білий    (вбудовано)
+// ============================================================
+
+import BaseLayout from './BaseLayout.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import AlsoMake from '../components/AlsoMake.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { PHONE, PHONE_DISPLAY } from '../config';
+
+interface CollagePicture {
+  src: string;
+  alt: string;
+}
+
+interface GalleryItem {
+  src:     string;
+  alt:     string;
+  caption: string;
+  large?:  boolean;
+}
+
+interface ObjectCard {
+  num:   string;
+  title: string;
+  text:  string;
+}
+
+interface SpecRow {
+  label: string;
+  value: string;
+}
+
+interface StepItem {
+  title: string;
+  text:  string;
+}
+
+interface WhyCard {
+  title: string;
+  text:  string;
+}
+
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface PageProps {
+  section:     string;
+  title:       string;
+  description: string;
+  canonical:   string;
+  crumbs:      Crumb[];
+  ogType?:     'website' | 'article';
+}
+
+interface Props {
+  page:         PageProps;
+  slug:         string;
+  hero: {
+    tag:     string;
+    h1:      string;
+    lead:    string;
+    badges:  string[];
+    collage: CollagePicture[];
+  };
+  gallery: {
+    h2:    string;
+    items: GalleryItem[];
+  };
+  objects: {
+    label: string;
+    h2:    string;
+    lead?: string;
+    cards: ObjectCard[];
+  };
+  specs: {
+    h2:   string;
+    rows: SpecRow[];
+  };
+  brands?: {
+    main: string[];
+    eco:  string[];
+  };
+  steps: {
+    h2:    string;
+    items: StepItem[];
+  };
+  why: {
+    h2:    string;
+    cards: WhyCard[];
+  };
+  faq: {
+    sectionTitle: string;
+    items:        FaqItem[];
+  };
+  contactTitle: string;
+}
+
+const {
+  page,
+  slug,
+  hero,
+  gallery,
+  objects,
+  specs,
+  brands,
+  steps,
+  why,
+  faq,
+  contactTitle,
+} = Astro.props;
+
+const hasExtra1 = Astro.slots.has('extra1');
+const hasExtra2 = Astro.slots.has('extra2');
+const hasBrands = !!brands;
+---
+<BaseLayout {page}>
+  <slot slot="head" name="head" />
+  <link slot="head" rel="stylesheet" href="/css/em-hrshch.css" />
+
+  <!-- ════════════════════════════════════════
+       1. HERO — зелений фон
+  ════════════════════════════════════════ -->
+  <div class="em-hero-product">
+    <div class="em-hero-product-inner">
+      <div class="em-hero-product-text">
+        <span class="em-hero-tag">{hero.tag}</span>
+        <h1>{hero.h1}</h1>
+        <p class="em-hero-product-lead">{hero.lead}</p>
+        <div class="em-hero-badges">
+          {hero.badges.map(badge => (
+            <div class="em-badge" set:html={badge} />
+          ))}
+        </div>
+        <div class="em-hero-product-actions">
+          <a href="#kontakty-blok" class="em-btn-primary">Замовити / Зв'язатися з нами</a>
+        </div>
+        <p class="em-hero-product-contact">
+          Або зателефонуйте: <a href={`tel:${PHONE}`}>{PHONE_DISPLAY}</a>
+        </p>
+      </div>
+      <div class="em-hero-collage">
+        {hero.collage.map((img, i) => (
+          <div class="em-hero-collage-item">
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading={i < 2 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       2. ГАЛЕРЕЯ — білий фон
+  ════════════════════════════════════════ -->
+  <section class="em-section">
+    <span class="em-section-label">Наші роботи</span>
+    <h2>{gallery.h2}</h2>
+    <div class="em-product-gallery">
+      {gallery.items.map(item => (
+        <div
+          class={`em-gallery-item${item.large ? ' em-gallery-item-large' : ''}`}
+          data-caption={item.caption}
+          data-full={item.src}
+        >
+          <img
+            src={item.src}
+            alt={item.alt}
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+    <div class="em-gallery-cta">
+      <a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи →</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       3. ЗАСТОСУВАННЯ — зелений фон
+  ════════════════════════════════════════ -->
+  <div class="em-section-alt">
+    <div class="em-section-alt-inner">
+      <span class="em-section-label">{objects.label}</span>
+      <h2>{objects.h2}</h2>
+      {objects.lead && <p class="em-lead">{objects.lead}</p>}
+      <div class="em-objects-grid">
+        {objects.cards.map(card => (
+          <div class="em-object-card">
+            <div class="em-object-num">{card.num}</div>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       4a. EXTRA1 — білий фон (dvyhuny, dymovydalennia, plk)
+  ════════════════════════════════════════ -->
+  {hasExtra1 && <slot name="extra1" />}
+
+  <!-- ════════════════════════════════════════
+       4b. EXTRA2 — зелений фон (тільки plk)
+  ════════════════════════════════════════ -->
+  {hasExtra2 && <slot name="extra2" />}
+
+  <!-- ════════════════════════════════════════
+       5. ХАРАКТЕРИСТИКИ — білий фон
+  ════════════════════════════════════════ -->
+  <section class="em-section">
+    <span class="em-section-label">Характеристики</span>
+    <h2>{specs.h2}</h2>
+    <table class="em-specs-table">
+      <tbody>
+        {specs.rows.map(row => (
+          <tr>
+            <td class="em-specs-label">{row.label}</td>
+            <td class="em-specs-value">{row.value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       6. КОМПОНЕНТИ — зелений фон (відсутній у plk)
+       Якщо brands немає — роздільник між двома білими секціями
+  ════════════════════════════════════════ -->
+  {hasBrands ? (
+    <div class="em-section-alt">
+      <div class="em-section-alt-inner">
+        <span class="em-section-label">Компоненти</span>
+        <h2>Компоненти та виробники</h2>
+        <p class="em-lead">Підбираємо під бюджет та наявність. Конкретний бренд узгоджується при прийомі замовлення.</p>
+        <div class="em-brands">
+          <div class="em-brands-group">
+            <div class="em-brands-group-label">Основні бренди</div>
+            <div class="em-brands-row">
+              {brands.main.map(b => (
+                <div class="em-brand-pill">{b}</div>
+              ))}
+            </div>
+          </div>
+          <div class="em-brands-group">
+            <div class="em-brands-group-label">Економ-комплектація</div>
+            <div class="em-brands-row">
+              {brands.eco.map(b => (
+                <div class="em-brand-pill secondary">{b}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <hr class="em-divider" />
+  )}
+
+  <!-- ════════════════════════════════════════
+       7. ЯК МИ ПРАЦЮЄМО — білий фон
+  ════════════════════════════════════════ -->
+  <section class="em-section">
+    <span class="em-section-label">Як ми працюємо</span>
+    <h2>{steps.h2}</h2>
+    <div class="em-steps-row">
+      {steps.items.map((step, i) => (
+        <div class="em-step">
+          <div class="em-step-num">{String(i + 1).padStart(2, '0')}</div>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+          {i < steps.items.length - 1 && (
+            <div class="em-step-arrow">
+              <svg viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       8. ПЕРЕВАГИ — зелений фон
+  ════════════════════════════════════════ -->
+  <div class="em-section-alt">
+    <div class="em-section-alt-inner">
+      <span class="em-section-label">Переваги</span>
+      <h2>{why.h2}</h2>
+      <div class="em-why-grid">
+        {why.cards.map(card => (
+          <div class="em-why-card">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       9. FAQ — білий фон (вбудовано у FaqAccordion)
+  ════════════════════════════════════════ -->
+  <FaqAccordion items={faq.items} sectionTitle={faq.sectionTitle} />
+
+  <!-- ════════════════════════════════════════
+      10. КОНТАКТНИЙ БЛОК — зелений (вбудовано)
+  ════════════════════════════════════════ -->
+  <ContactBlock title={contactTitle} />
+
+  <!-- ════════════════════════════════════════
+      11. ТАКОЖ ВИГОТОВЛЯЄМО — білий (вбудовано)
+  ════════════════════════════════════════ -->
+  <AlsoMake currentSlug={slug} />
+
+  <Lightbox />
+  <script is:inline src="/js/em-site.js"></script>
+</BaseLayout>

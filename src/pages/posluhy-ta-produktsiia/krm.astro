@@ -1,10 +1,6 @@
 ---
-import { PHONE, PHONE_DISPLAY, SITE_CANONICAL } from '../../config';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FaqAccordion from '../../components/FaqAccordion.astro';
-import AlsoMake from '../../components/AlsoMake.astro';
-import ContactBlock from '../../components/ContactBlock.astro';
-import Lightbox from '../../components/Lightbox.astro';
+import { SITE_CANONICAL } from '../../config';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 
 const page = {
   section:     'produktsiia',
@@ -18,123 +14,119 @@ const page = {
   ],
 };
 
-const faqItems = [
-  { q: "Як зрозуміти, що нам потрібна КРМ?", a: "Якщо постачальник електроенергії виставляє штраф за реактивну потужність або cos φ нижче 0,92–0,95 — КРМ потрібна. Також ознаки проблеми: перевантажені трансформатори, просадки напруги у мережі, перегрів кабелів." },
-  { q: "Що потрібно для розрахунку установки?", a: "Надішліть показники з лічильника (активна та реактивна потужність або cos φ) або виписку від постачальника. Якщо є можливість — дані вимірювань за кілька місяців. На основі цього розрахуємо необхідну потужність та кількість ступенів." },
-  { q: "Скільки ступенів потрібно?", a: "Залежить від характеру навантаження. Якщо навантаження відносно стале — достатньо 1–2 ступенів. Якщо навантаження змінне (включаються/виключаються споживачі протягом дня) — потрібно більше ступенів, щоб регулятор міг точно підтримувати cos φ." },
-  { q: "Як обрати потужність конденсаторних батарей?", a: "Розраховується на основі виміряної реактивної потужності. Встановлювати з запасом понад 10–15% не рекомендується — перекомпенсація так само шкідлива, як і недокомпенсація." },
-  { q: "Чи можна замовити КРМ без автоматичного регулятора?", a: "Так, якщо навантаження постійне і не змінюється. Але в більшості промислових об'єктів навантаження змінюється протягом дня, тому автоматичний регулятор cos φ є стандартним рішенням." },
-  { q: "Яку документацію ви передаєте разом з установкою?", a: "Паспорт виробу та принципову схему. Документи вкладаються безпосередньо у щит." },
-  { q: "Який термін виготовлення?", a: "Від 2 тижнів. Точний термін узгоджується після отримання технічного завдання або розрахункових даних." },
-];
+const hero = {
+  tag:    'Виготовлення · Київ та область',
+  h1:     'Виготовлення КРМ — конденсаторних установок на замовлення',
+  lead:   "Виготовляємо конденсаторні установки компенсації реактивної потужності для промислових підприємств і комерційних об'єктів. Автоматичний регулятор cos φ, розрахунок потужності та кількості ступенів під ваші дані. Київ, Київська область та вся Україна.",
+  badges: [
+    '<strong>від 10 до 1000+ кВАр</strong>',
+    '<strong>від 2 тижнів</strong> — виготовлення',
+    '<strong>12 міс.</strong> — гарантія',
+    '<strong>25 років</strong> — досвід',
+  ],
+  collage: [
+    { src: '/images/krm/krm-ustanovka-zahalnyi-vyhlyad-kyiv-2026-06-c1.jpg',  alt: 'КРМ — загальний вигляд конденсаторної установки компенсації реактивної потужності' },
+    { src: '/images/krm/krm-kondensatorni-batarei-kontaktory-kyiv-2026-06-c2.jpg', alt: 'Конденсаторні батареї та контактори всередині установки КРМ' },
+    { src: '/images/krm/krm-regulator-cos-phi-panel-kyiv-2026-06-c3.jpg',     alt: 'Автоматичний регулятор cos φ на панелі управління КРМ' },
+    { src: '/images/krm/krm-vnutrishniy-montazh-kably-kyiv-2026-06-c4.jpg',   alt: 'Внутрішній монтаж КРМ — кабельна розводка та клемні з\'єднання' },
+  ],
+};
+
+const gallery = {
+  h2: 'Виготовлення КРМ — фото з нашого виробництва',
+  items: [
+    { src: '/images/krm/krm-ustanovka-zahalnyi-vyhlyad-kyiv-2026-06-01.jpg',    alt: 'КРМ — загальний вигляд установки',                      caption: 'КРМ — загальний вигляд конденсаторної установки, відкрита шафа', large: true },
+    { src: '/images/krm/krm-kondensatorni-batarei-kontaktory-kyiv-2026-06-02.jpg', alt: 'Конденсаторні батареї та контактори в установці КРМ', caption: 'Конденсаторні батареї та пускові контактори — верхня секція КРМ' },
+    { src: '/images/krm/krm-panel-regulator-cos-phi-kyiv-2026-06-03.jpg',       alt: 'Панель керування КРМ з регулятором cos φ',              caption: 'Панель керування КРМ — автоматичний регулятор cos φ, амперметр, вольтметр, лампи індикації' },
+    { src: '/images/krm/krm-sektsiya-avtomaty-shyny-kyiv-2026-06-04.jpg',       alt: 'Нижня секція КРМ — автомати та шини',                   caption: 'Нижня секція — автомати QF, шини PE/N, кабельні введення' },
+    { src: '/images/krm/krm-droselni-filtry-kondensatory-kyiv-2026-06-05.jpg',   alt: 'Дросельні фільтри та конденсаторні батареї в КРМ',      caption: 'Дросельні фільтри з конденсаторними батареями — захист від гармонік' },
+    { src: '/images/krm/krm-shyny-kabelna-rozvoda-kyiv-2026-06-06.jpg',         alt: 'Шини та кабельна розводка в установці КРМ',             caption: 'Збірні шини та кабельна розводка — внутрішній монтаж КРМ' },
+    { src: '/images/krm/krm-markuvannia-stupeni-kyiv-2026-06-07.jpg',           alt: 'Маркування ступенів та клем в установці КРМ',           caption: 'Маркування ступенів та клемних колодок — зручне обслуговування' },
+    { src: '/images/krm/krm-gotova-ustanovka-zboku-kyiv-2026-06-08.jpg',        alt: 'Готова установка КРМ — вигляд перед відправкою',        caption: 'Готова установка КРМ — вигляд збоку та зверху перед відправкою' },
+  ],
+};
+
+const objects = {
+  label: 'Застосування',
+  h2:    "КРМ — для яких об'єктів",
+  lead:  'КРМ встановлюють там, де є значне індуктивне навантаження і постачальник виставляє штраф за реактивну потужність.',
+  cards: [
+    { num: '01', title: 'Промислові підприємства',        text: 'Заводи з потужним електродвигунним навантаженням — де реактивна потужність суттєво впливає на вартість електроенергії.' },
+    { num: '02', title: 'Зварювальне виробництво',        text: 'Зварювальне обладнання — один з основних джерел реактивної потужності на виробництві.' },
+    { num: '03', title: 'Агропромислові комплекси',       text: 'Зернотоки, елеватори, насосні станції — де велика кількість електродвигунів створює значне реактивне навантаження.' },
+    { num: '04', title: 'Торгові та логістичні центри',   text: "Великі об'єкти з розгалуженою мережею живлення та змінним навантаженням." },
+    { num: '05', title: 'Насосні та компресорні станції', text: "Об'єкти з постійно працюючими електродвигунами великої потужності." },
+    { num: '06', title: 'Головні енергетики',             text: 'Замовники зі штатним енергетиком, які отримали приписи від постачальника та потребують рішення під ключ.' },
+  ],
+};
+
+const specs = {
+  h2:   'Технічні характеристики КРМ',
+  rows: [
+    { label: 'Потужність компенсації',            value: 'від 10 до 1000+ кВАр — розраховується під об\'єкт' },
+    { label: 'Кількість ступенів',                value: 'від 1 до 12 і більше' },
+    { label: 'Регулятор cos φ',                   value: 'Автоматичний — входить у стандартну комплектацію' },
+    { label: 'Напруга',                           value: '0,4 кВ (380В)' },
+    { label: 'Захист від гармонік',               value: 'Дросельні фільтри — за потребою' },
+    { label: 'Розрахунок під ваші дані',          value: 'Так — надішліть показники лічильника або виписку' },
+    { label: 'Виготовлення за схемами замовника', value: 'Так' },
+    { label: 'Гарантія',                          value: '12 місяців' },
+    { label: 'Терміни виготовлення',              value: 'від 2 тижнів' },
+    { label: 'Доставка',                          value: 'Київ, Київська область, вся Україна' },
+  ],
+};
+
+const brands = {
+  main: ['ETI', 'Hager', 'Schneider Electric', 'Eaton'],
+  eco:  ['E-Next', 'Asko', 'Chint'],
+};
+
+const steps = {
+  h2:    '5 кроків від ТЗ до готової установки',
+  items: [
+    { title: 'Технічне завдання',        text: 'Надсилаєте дані лічильника або виписку від постачальника — розрахуємо потужність та кількість ступенів.' },
+    { title: 'Розрахунок та схема',      text: 'Розробляємо специфікацію та схему, узгоджуємо вартість та строки. Відповідаємо за 1–2 дні.' },
+    { title: 'Оплата',                   text: 'Після оплати установка ставиться у виробництво.' },
+    { title: 'Збірка та перевірка',      text: 'Збираємо у Києві. Маркуємо, перевіряємо кожну установку перед відправкою.' },
+    { title: 'Передача з документацією', text: 'Доставка по Києву та Київській обл. або Нова Пошта. Паспорт виробу та схема — у щиті.' },
+  ],
+};
+
+const why = {
+  h2:    'Чому замовляють у нас',
+  cards: [
+    { title: 'Досвід з 1999 року',                text: '25+ років виготовлення щитів для промислових та комерційних об\'єктів.' },
+    { title: 'Розрахунок під ваші дані',          text: 'Надішліть показники лічильника — розрахуємо потужність та кількість ступенів під ваш об\'єкт.' },
+    { title: 'Робота за проєктною документацією', text: 'Приймаємо схеми від будь-якої проєктної організації та збираємо точно за ними.' },
+    { title: 'Тестування перед відправкою',       text: 'Кожна установка перевіряється до передачі замовнику. Паспорт виробу — з кожним щитом.' },
+    { title: 'Доставка по всій Україні',          text: 'По Києву та Київській обл. — власним транспортом. По Україні — Новою Поштою.' },
+    { title: 'Гарантія 12 місяців',              text: 'На кожну виготовлену установку — письмове гарантійне зобов\'язання.' },
+  ],
+};
+
+const faq = {
+  sectionTitle: 'Питання про виготовлення КРМ',
+  items: [
+    { q: 'Як зрозуміти, що нам потрібна КРМ?',           a: 'Якщо постачальник електроенергії виставляє штраф за реактивну потужність або cos φ нижче 0,92–0,95 — КРМ потрібна. Також ознаки проблеми: перевантажені трансформатори, просадки напруги у мережі, перегрів кабелів.' },
+    { q: 'Що потрібно для розрахунку установки?',        a: 'Надішліть показники з лічильника (активна та реактивна потужність або cos φ) або виписку від постачальника. На основі цього розрахуємо необхідну потужність та кількість ступенів.' },
+    { q: 'Скільки ступенів потрібно?',                   a: 'Залежить від характеру навантаження. Якщо навантаження відносно стале — достатньо 1–2 ступенів. Якщо навантаження змінне — потрібно більше ступенів, щоб регулятор міг точно підтримувати cos φ.' },
+    { q: 'Як обрати потужність конденсаторних батарей?', a: 'Розраховується на основі виміряної реактивної потужності. Встановлювати з запасом понад 10–15% не рекомендується — перекомпенсація так само шкідлива, як і недокомпенсація.' },
+    { q: 'Чи можна замовити КРМ без автоматичного регулятора?', a: 'Так, якщо навантаження постійне і не змінюється. Але в більшості промислових об\'єктів навантаження змінюється протягом дня, тому автоматичний регулятор cos φ є стандартним рішенням.' },
+    { q: 'Яку документацію ви передаєте разом з установкою?', a: 'Паспорт виробу та принципову схему. Документи вкладаються безпосередньо у щит.' },
+    { q: 'Який термін виготовлення?',                    a: 'Від 2 тижнів. Точний термін узгоджується після отримання технічного завдання або розрахункових даних.' },
+  ],
+};
 ---
-<BaseLayout {page}>
-  <link slot="head" rel="stylesheet" href="/css/em-hrshch.css" />
-
-  <div class="em-hero-product">
-    <div class="em-hero-product-inner">
-      <div class="em-hero-product-text">
-        <h1>Виготовлення КРМ — конденсаторних установок на замовлення</h1>
-        <p class="em-hero-product-lead">Виготовляємо конденсаторні установки компенсації реактивної потужності для промислових підприємств і комерційних об'єктів. Автоматичний регулятор cos φ, розрахунок потужності та кількості ступенів під ваші дані. Київ, Київська область та вся Україна.</p>
-        <div class="em-hero-badges">
-          <div class="em-badge"><strong>від 10 до 1000+ кВАр</strong></div>
-          <div class="em-badge"><strong>від 2 тижнів</strong> — виготовлення</div>
-          <div class="em-badge"><strong>12 міс.</strong> — гарантія</div>
-          <div class="em-badge"><strong>25 років</strong> — досвід</div>
-        </div>
-        <div class="em-hero-product-actions">
-          <a href="#kontakty-blok" class="em-btn-primary">Замовити / Зв'язатися з нами</a>
-        </div>
-        <p class="em-hero-product-contact">Або зателефонуйте: <a href={`tel:${PHONE}`}>{PHONE_DISPLAY}</a></p>
-      </div>
-      <div class="em-hero-collage">
-        <div class="em-hero-collage-item"><img src="/images/krm/krm-ustanovka-zahalnyi-vyhlyad-kyiv-2026-06-c1.jpg" alt="КРМ — загальний вигляд конденсаторної установки компенсації реактивної потужності" loading="eager" /></div>
-        <div class="em-hero-collage-item"><img src="/images/krm/krm-kondensatorni-batarei-kontaktory-kyiv-2026-06-c2.jpg" alt="Конденсаторні батареї та контактори всередині установки КРМ" loading="eager" /></div>
-        <div class="em-hero-collage-item"><img src="/images/krm/krm-regulator-cos-phi-panel-kyiv-2026-06-c3.jpg" alt="Автоматичний регулятор cos φ на панелі управління КРМ" loading="lazy" /></div>
-        <div class="em-hero-collage-item"><img src="/images/krm/krm-vnutrishniy-montazh-kably-kyiv-2026-06-c4.jpg" alt="Внутрішній монтаж КРМ — кабельна розводка та клемні з'єднання" loading="lazy" /></div>
-      </div>
-    </div>
-  </div>
-
-  <section class="em-section">
-    <span class="em-section-label">Наші роботи</span>
-    <h2>Виготовлення КРМ — фото з нашого виробництва</h2>
-    <div class="em-product-gallery">
-      <div class="em-gallery-item em-gallery-item-large" data-caption="КРМ — загальний вигляд конденсаторної установки, відкрита шафа" data-full="/images/krm/krm-ustanovka-zahalnyi-vyhlyad-kyiv-2026-06-01.jpg"><img src="/images/krm/krm-ustanovka-zahalnyi-vyhlyad-kyiv-2026-06-01.jpg" alt="КРМ — загальний вигляд установки" width="900" height="1200" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Конденсаторні батареї та пускові контактори — верхня секція КРМ" data-full="/images/krm/krm-kondensatorni-batarei-kontaktory-kyiv-2026-06-02.jpg"><img src="/images/krm/krm-kondensatorni-batarei-kontaktory-kyiv-2026-06-02.jpg" alt="Конденсаторні батареї та контактори в установці КРМ" width="1200" height="900" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Панель керування КРМ — автоматичний регулятор cos φ, амперметр, вольтметр, лампи індикації" data-full="/images/krm/krm-panel-regulator-cos-phi-kyiv-2026-06-03.jpg"><img src="/images/krm/krm-panel-regulator-cos-phi-kyiv-2026-06-03.jpg" alt="Панель керування КРМ з регулятором cos φ" width="900" height="1200" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Нижня секція — автомати QF, шини PE/N, кабельні введення" data-full="/images/krm/krm-sektsiya-avtomaty-shyny-kyiv-2026-06-04.jpg"><img src="/images/krm/krm-sektsiya-avtomaty-shyny-kyiv-2026-06-04.jpg" alt="Нижня секція КРМ — автомати та шини" width="1200" height="900" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Дросельні фільтри з конденсаторними батареями — захист від гармонік" data-full="/images/krm/krm-droselni-filtry-kondensatory-kyiv-2026-06-05.jpg"><img src="/images/krm/krm-droselni-filtry-kondensatory-kyiv-2026-06-05.jpg" alt="Дросельні фільтри та конденсаторні батареї в КРМ" width="900" height="1200" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Збірні шини та кабельна розводка — внутрішній монтаж КРМ" data-full="/images/krm/krm-shyny-kabelna-rozvoda-kyiv-2026-06-06.jpg"><img src="/images/krm/krm-shyny-kabelna-rozvoda-kyiv-2026-06-06.jpg" alt="Шини та кабельна розводка в установці КРМ" width="1200" height="900" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Маркування ступенів та клемних колодок — зручне обслуговування" data-full="/images/krm/krm-markuvannia-stupeni-kyiv-2026-06-07.jpg"><img src="/images/krm/krm-markuvannia-stupeni-kyiv-2026-06-07.jpg" alt="Маркування ступенів та клем в установці КРМ" width="900" height="1200" loading="lazy" /></div>
-      <div class="em-gallery-item" data-caption="Готова установка КРМ — вигляд збоку та зверху перед відправкою" data-full="/images/krm/krm-gotova-ustanovka-zboku-kyiv-2026-06-08.jpg"><img src="/images/krm/krm-gotova-ustanovka-zboku-kyiv-2026-06-08.jpg" alt="Готова установка КРМ — вигляд перед відправкою" width="900" height="1200" loading="lazy" /></div>
-    </div>
-    <div class="em-gallery-cta"><a href="/vykonani-roboty/" class="em-btn-primary">Переглянути роботи →</a></div>
-  </section>
-
-  <div class="em-section-alt">
-    <div class="em-section-alt-inner">
-      <span class="em-section-label">Застосування</span>
-      <h2>КРМ — для яких об'єктів</h2>
-      <p class="em-lead">КРМ встановлюють там, де є значне індуктивне навантаження і постачальник виставляє штраф за реактивну потужність.</p>
-      <div class="em-objects-grid">
-        <div class="em-object-card"><div class="em-object-num">01</div><h3>Промислові підприємства</h3><p>Заводи з потужним електродвигунним навантаженням — де реактивна потужність суттєво впливає на вартість електроенергії.</p></div>
-        <div class="em-object-card"><div class="em-object-num">02</div><h3>Зварювальне виробництво</h3><p>Зварювальне обладнання — один з основних джерел реактивної потужності на виробництві.</p></div>
-        <div class="em-object-card"><div class="em-object-num">03</div><h3>Агропромислові комплекси</h3><p>Зернотоки, елеватори, насосні станції — де велика кількість електродвигунів створює значне реактивне навантаження.</p></div>
-        <div class="em-object-card"><div class="em-object-num">04</div><h3>Торгові та логістичні центри</h3><p>Великі об'єкти з розгалуженою мережею живлення та змінним навантаженням.</p></div>
-        <div class="em-object-card"><div class="em-object-num">05</div><h3>Насосні та компресорні станції</h3><p>Об'єкти з постійно працюючими електродвигунами великої потужності.</p></div>
-        <div class="em-object-card"><div class="em-object-num">06</div><h3>Головні енергетики</h3><p>Замовники зі штатним енергетиком, які отримали приписи від постачальника та потребують рішення під ключ.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <section class="em-section">
-    <span class="em-section-label">Характеристики</span>
-    <h2>Технічні характеристики КРМ</h2>
-    <table class="em-specs-table">
-      <tbody>
-        <tr><td class="em-specs-label">Потужність компенсації</td><td class="em-specs-value">від 10 до 1000+ кВАр — розраховується під об'єкт</td></tr>
-        <tr><td class="em-specs-label">Кількість ступенів</td><td class="em-specs-value">від 1 до 12 і більше</td></tr>
-        <tr><td class="em-specs-label">Регулятор cos φ</td><td class="em-specs-value">Автоматичний — входить у стандартну комплектацію</td></tr>
-        <tr><td class="em-specs-label">Напруга</td><td class="em-specs-value">0,4 кВ (380В)</td></tr>
-        <tr><td class="em-specs-label">Захист від гармонік</td><td class="em-specs-value">Дросельні фільтри — за потребою</td></tr>
-        <tr><td class="em-specs-label">Розрахунок під ваші дані</td><td class="em-specs-value">Так — надішліть показники лічильника або виписку</td></tr>
-        <tr><td class="em-specs-label">Виготовлення за схемами замовника</td><td class="em-specs-value">Так</td></tr>
-        <tr><td class="em-specs-label">Гарантія</td><td class="em-specs-value">12 місяців</td></tr>
-        <tr><td class="em-specs-label">Терміни виготовлення</td><td class="em-specs-value">від 2 тижнів</td></tr>
-        <tr><td class="em-specs-label">Доставка</td><td class="em-specs-value">Київ, Київська область, вся Україна</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <div class="em-section-alt">
-    <div class="em-section-alt-inner">
-      <span class="em-section-label">Компоненти</span>
-      <h2>Компоненти та виробники</h2>
-      <p class="em-lead">Підбираємо під бюджет та наявність. Конкретний бренд узгоджується при прийомі замовлення.</p>
-      <div class="em-brands">
-        <div class="em-brands-group"><div class="em-brands-group-label">Основні бренди</div><div class="em-brands-row"><div class="em-brand-pill">ETI</div><div class="em-brand-pill">Hager</div><div class="em-brand-pill">Schneider Electric</div><div class="em-brand-pill">Eaton</div></div></div>
-        <div class="em-brands-group"><div class="em-brands-group-label">Економ-комплектація</div><div class="em-brands-row"><div class="em-brand-pill secondary">E-Next</div><div class="em-brand-pill secondary">Asko</div><div class="em-brand-pill secondary">Chint</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <section class="em-section">
-    <span class="em-section-label">Переваги</span>
-    <h2>Чому замовляють у нас</h2>
-    <div class="em-why-grid">
-      <div class="em-why-card"><h3>Досвід з 1999 року</h3><p>25+ років виготовлення щитів для промислових та комерційних об'єктів.</p></div>
-      <div class="em-why-card"><h3>Розрахунок під ваші дані</h3><p>Надішліть показники лічильника — розрахуємо потужність та кількість ступенів під ваш об'єкт.</p></div>
-      <div class="em-why-card"><h3>Робота за проєктною документацією</h3><p>Приймаємо схеми від будь-якої проєктної організації та збираємо точно за ними.</p></div>
-      <div class="em-why-card"><h3>Тестування перед відправкою</h3><p>Кожна установка перевіряється до передачі замовнику. Паспорт виробу — з кожним щитом.</p></div>
-      <div class="em-why-card"><h3>Доставка по всій Україні</h3><p>По Києву та Київській обл. — власним транспортом. По Україні — Новою Поштою.</p></div>
-      <div class="em-why-card"><h3>Гарантія 12 місяців</h3><p>На кожну виготовлену установку — письмове гарантійне зобов'язання.</p></div>
-    </div>
-  </section>
-
-  <FaqAccordion items={faqItems} sectionTitle="Питання про виготовлення КРМ" />
-  <ContactBlock title="Готові обговорити ваше замовлення — КРМ" />
-  <AlsoMake currentSlug="krm" />
-  <Lightbox />
-  <script is:inline src="/js/em-site.js"></script>
-</BaseLayout>
+<ProductLayout
+  {page}
+  slug="krm"
+  {hero}
+  {gallery}
+  {objects}
+  {specs}
+  {brands}
+  {steps}
+  {why}
+  {faq}
+  contactTitle="Готові обговорити ваше замовлення — КРМ"
+/>
