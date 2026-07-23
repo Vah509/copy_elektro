@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /admin_509/
-Disallow: /admin_509
-
-Sitemap: https://elektroschit.com.ua/sitemap.xml
